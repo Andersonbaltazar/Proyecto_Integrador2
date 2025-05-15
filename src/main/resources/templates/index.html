@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login con Google</title>
+</head>
+<body>
+<h1>Bienvenido</h1>
+<div th:if="${name}">
+    <p th:text="'Hola, ' + ${name} + '!'"></p>
+</div>
+<div th:unless="${name}">
+    <p><a href="/oauth2/authorization/google">Login con Google</a></p>
+</div>
+</body>
+</html>
