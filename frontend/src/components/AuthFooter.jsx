@@ -12,4 +12,4 @@ const AuthFooter = () => {
   );
 };
 
-export default HeroImage;  
+export default AuthFooter;  
