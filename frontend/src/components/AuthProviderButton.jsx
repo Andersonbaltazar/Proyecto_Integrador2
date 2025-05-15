@@ -15,7 +15,7 @@ const AuthProviderButton = ({ provider }) => {
   const logo = logos[provider];
 
   return (
-    <button className="d-flex gap-2 auth-button">
+    <button className="d-flex gap-5 auth-button align-center">
       <img className="img-logo-auth-button" src={logo} alt={`${provider} logo`} />
       <span className="text-auth-button">Continuar con {provider}</span>
     </button>
