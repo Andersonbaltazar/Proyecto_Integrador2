@@ -5,7 +5,11 @@
 </head>
 <body>
 <h1>Bienvenido</h1>
-<div th:if="${name}">
+<div th:if="${attributes}">
+    <h3>Atributos del Usuario:</h3>
+    <ul>
+        <li th:each="attribute : ${attributes}" th:text="${attribute.key} + ': ' + ${attribute.value}"></li>
+    </ul>
     <p th:text="'Hola, ' + ${name} + '!'"></p>
 </div>
 <div th:unless="${name}">
