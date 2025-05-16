@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap');
 :root{
     scroll-behavior: smooth;
-    --secondary-color: #535353;
-    --white-color: #FFFFFF;
+    --color-muted: #535353;
+    --white-color: #ffffff;
     --black-color: #000000;
     --transparent-color: transparent;
     --border-color: #6E6E6E;
 
-    --white-text: var(--white-color);
-    --secondary-text: var(--secondary-color);  
+    --text-white: var(--white-color);
+    --text-black: var(--black-color);
+    --text-muted: var(--color-muted);  
 
     --size: 0.25rem;
 
