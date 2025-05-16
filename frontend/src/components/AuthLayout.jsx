@@ -5,7 +5,7 @@ import HeroImage from "./HeroImage";
 
 const AuthLayout = () => {
   return (
-    <div className="d-flex auth-layout justify-center">
+    <div className="d-flex auth-layout justify-center flex-wrap">
       <div className="d-flex flex-column auth-layout-container justify-center align-center gap-5">
         <header className="d-flex flex-column auth-layout-header gap-2 align-center">
             <h1 className="title-auth-layout text-center">¡Bienvenido!</h1>

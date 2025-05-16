@@ -4,7 +4,7 @@ import "./css/index.css";
 
 function App() {
   return (
-    <main>
+    <main className="main-section">
       <LoginPage />
     </main>
   );
