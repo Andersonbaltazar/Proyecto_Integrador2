@@ -4,7 +4,7 @@ import DashboardContent from '../components/DashboardContent';
 
 const DashboardLayout = () => {
   return (
-    <div className="dashboard-layout">
+    <div className="dashboard-layout d-flex">
       <Sidebar />
       <DashboardContent />
     </div>

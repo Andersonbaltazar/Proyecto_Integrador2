@@ -4,15 +4,17 @@ import FeaturedCard from './FeaturedCard';
 
 const Sidebar = () => {
   return (
-    <aside className="sidebar-layout">
-        <header className="header-sidebar">
+    <aside className="sidebar-layout d-flex flex-column">
+        <header className="header-sidebar d-flex justify-center align-center">
             <h1 className="title-sidebar">Dashboard</h1>
         </header>
-        <nav className="menu-item-list">
-            <SidebarMenuItem provider="Home" />
-            <SidebarMenuItem provider="Configuracion" />
-        </nav>
-        <footer className="footer-sidebar">
+        <section className="menu d-flex justify-center">
+            <nav className="menu-item-list d-flex flex-column gap-3">
+                <SidebarMenuItem provider="Home" />
+                <SidebarMenuItem provider="Configuracion" />
+            </nav>
+        </section>
+        <footer className="footer-sidebar d-flex justify-center">
             <FeaturedCard />
         </footer>
     </aside>
