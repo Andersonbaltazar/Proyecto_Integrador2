@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
 import "./css/index.css";
 
 function App() {
   return (
     <main className="main-section">
-      <LoginPage />
+      <DashboardPage />
     </main>
   );
 }

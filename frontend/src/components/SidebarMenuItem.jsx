@@ -2,8 +2,6 @@ import React from 'react';
 
 const iconos = {
   Home: <ion-icon name="home-sharp"></ion-icon>,
-  Crear: facebookLogo,
-  X: xLogo,
   Configuracion: <ion-icon name="settings-sharp"></ion-icon>,
 };
 
