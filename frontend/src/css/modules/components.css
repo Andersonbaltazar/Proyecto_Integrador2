@@ -84,7 +84,7 @@
     height: 100%;
 }
 .sidebar-layout{
-    width: calc(var(--size) * 75);
+    max-width: calc(var(--size) * 70);
     height: 100%;
     background-color: #1d4c43;
 }
@@ -132,4 +132,54 @@
 }
 .paragraph-featured-card{
     font-size: calc(var(--size) * 3);
+}
+.dashboard-content-section{
+    width: 100%;
+    height: 100%;
+    padding: calc(var(--size) * 5);
+}
+.header-dashboard-content{
+    width: 100%;
+}
+.title-header-dashboard{
+    font-size: calc(var(--size) * 10);
+    color: #224f45;
+}
+.progress-container{
+    width: 100%;
+    margin-top: calc(var(--size) * 5);
+}
+.title-progress-container{
+    font-size: calc(var(--size) * 6);
+    color: #224f45;
+    font-weight: 500;
+}
+.progress-panel-section{
+    width: 100%;
+    padding: calc(var(--size) * 5);
+}
+.progress-card-1{
+    width: calc(var(--size) * 45);
+    background-color: #224f45;
+    border-radius: calc(var(--size) * 1);
+    padding: calc(var(--size) * 5);
+    color: var(--text-white);
+}
+.progress-card-2{
+    width: calc(var(--size) * 45);
+    background-color: #f8ffdd;
+    border-radius: calc(var(--size) * 1);
+    padding: calc(var(--size) * 5);
+    color: #224f45;
+}
+.img-progress-card{
+    width: 90%;
+    height: calc(var(--size) * 30);
+    object-fit: cover;
+}
+.title-progress-card{
+    font-size: calc(var(--size) * 5);
+}
+.paragraph-progress-card{
+    font-size: calc(var(--size) * 4);
 }

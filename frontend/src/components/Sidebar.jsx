@@ -10,7 +10,7 @@ const Sidebar = () => {
         </header>
         <section className="menu d-flex justify-center">
             <nav className="menu-item-list d-flex flex-column gap-3">
-                <SidebarMenuItem provider="Home" />
+                <SidebarMenuItem provider="Inicio" />
                 <SidebarMenuItem provider="Configuracion" />
             </nav>
         </section>

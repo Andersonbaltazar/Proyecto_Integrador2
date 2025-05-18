@@ -1,7 +1,7 @@
 import React from 'react';
 
 const iconos = {
-  Home: <ion-icon name="home-sharp"></ion-icon>,
+  Inicio: <ion-icon name="home-sharp"></ion-icon>,
   Configuracion: <ion-icon name="settings-sharp"></ion-icon>,
 };
 

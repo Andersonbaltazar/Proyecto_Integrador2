@@ -1,12 +1,14 @@
 import React from 'react';
 
-const ProgressPanelItem = () => {
+const ProgressPanelItem = ({ title, growth, image, customClass }) => {
   return (
-    <div className="progress-card d-flex flex-column">
-        <img src="" alt="Imagen de la carta" className="img-progress-card" />
-        <h2 className="title-progress-card text-center"></h2>
-        <p className="paragraph-progress-card text-center"></p>
-    </div>
+    <button className={`${customClass} d-flex flex-column gap-2 justify-center`}>
+      <div className="img-container-progress-card d-flex justify-center">
+          <img src={image} alt={`Imagen de ${title}`} className="img-progress-card" />
+      </div>
+      <h2 className="title-progress-card text-center">{title}</h2>
+      <p className="paragraph-progress-card text-center">{growth}% Crecimiento</p>
+    </button>
   );
 };
 
