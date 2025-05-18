@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recomendación de Cultivo</title>
+</head>
+<body>
+<form action="/recomendar" method="get">
+    <div>
+        <label for="cultivoId">Selecciona tu cultivo (obligatorio):</label><br>
+        <select id="cultivoId" name="cultivoId" required="required">
+            <option value="">-- Selecciona un cultivo --</option>
+            <option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}" th:text="${cultivo.nombre}"></option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="pregunta">Ingresa tu pregunta sobre agricultura:</label><br>
+        <textarea id="pregunta" name="pregunta" rows="4" cols="50"></textarea>
+    </div>
+    <button type="submit">Obtener Recomendación</button>
+</form>
+
+<div th:if="${busquedaRealizada}">
+    <h2>Resultado de la Recomendación:</h2>
+    <p><b>Tu pregunta:</b> <span th:text="${pregunta}"></span></p>
+    <p th:if="${cultivoSeleccionado}"><b>Cultivo seleccionado:</b> <span th:text="${cultivoSeleccionado.nombre}"></span></p>
+    <p><b>Recomendación:</b></p>
+    <pre th:text="${recomendacion}"></pre>
+</div>
+
+<p><a href="/">Volver a la página principal</a></p>
+<p><a href="/registrar_cultivo">Registrar un nuevo cultivo</a></p>
+</body>
+</html>

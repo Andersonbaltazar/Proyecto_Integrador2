@@ -2,6 +2,7 @@ package tecsup.edu.pe.integrador_2.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -40,6 +41,9 @@ public class Usuario {
 
     @Column(name = "ultimo_login")
     private LocalDateTime ultimoLogin;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cultivo> cultivos;
 
     // Getters y setters
 
@@ -135,5 +139,13 @@ public class Usuario {
     @PreUpdate
     public void setUltimoLogin() {
         this.ultimoLogin = LocalDateTime.now();
+    }
+
+    public List<Cultivo> getCultivos() {
+        return cultivos;
+    }
+
+    public void setCultivos(List<Cultivo> cultivos) {
+        this.cultivos = cultivos;
     }
 }
