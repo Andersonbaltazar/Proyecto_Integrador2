@@ -8,9 +8,9 @@ const AuthLayout = () => {
     <div className="d-flex auth-layout justify-center align-center flex-wrap">
       <div className="d-flex flex-column auth-layout-container justify-center align-center gap-5">
         <header className="d-flex flex-column auth-layout-header gap-2 align-center">
-            <h1 className="title-auth-layout text-center">¡Bienvenido!</h1>
+            <h1 className="title-auth-layout text-center">AgroTechAI</h1>
             <p className="gretting-auth-layout text-center">
-                Bienvenido a <strong>Nombre</strong>. Ingresa a nuestra aplicación
+                Bienvenido a <strong>AgroTechAI</strong>. Ingresa a nuestra aplicación
                 usando una de las opciones.
             </p>
         </header>

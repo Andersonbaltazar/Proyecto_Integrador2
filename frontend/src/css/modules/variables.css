@@ -2,6 +2,8 @@
 :root{
     scroll-behavior: smooth;
     --primary-color: #224f45;
+    --secondary-color: #aeed72;
+    --third-color: #8ae286;
     --color-muted: #535353;
     --white-color: #ffffff;
     --black-color: #000000;

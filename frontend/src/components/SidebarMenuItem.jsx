@@ -8,10 +8,10 @@ const iconos = {
   "Cerrar Sesión": <ion-icon name="log-out-outline"></ion-icon>,
 };
 
-const SidebarMenuItem = ({ provider }) => {
+const SidebarMenuItem = ({ provider, customClass }) => {
 
   return (
-    <button className='menu-item-active d-flex gap-2 align-center'>
+    <button className={`${customClass} d-flex gap-2 align-center`}>
         <span className='icon d-flex align-center'>{iconos[provider]}</span>
         <span className='text-menu-item'>{provider}</span>
     </button>

@@ -20,7 +20,7 @@ function LogoutButton({ setIsAuthenticated }) {
   };
 
   return (
-    <button className="menu-item-active d-flex gap-2 align-center" onClick={handleLogout}>
+    <button className="menu-item d-flex gap-2 align-center" onClick={handleLogout}>
       <span className="icon d-flex align-center">
         <ion-icon name="log-out-outline"></ion-icon>
       </span>

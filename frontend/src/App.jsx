@@ -32,7 +32,7 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            isAuthenticated ? <DashboardPage setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />
+            isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />
           }
         />
         <Route

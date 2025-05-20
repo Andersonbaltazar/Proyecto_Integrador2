@@ -86,7 +86,7 @@
 .sidebar-layout{
     max-width: calc(var(--size) * 70);
     height: 100%;
-    background-color: #1d4c43;
+    background-color: #1d492c;
 }
 .header-sidebar{
     width: 100%;
@@ -105,8 +105,15 @@
     width: 80%;
 }
 .menu-item-active{
-    background-color: #dbf379;
-    color: var(--primary-text-color);
+    background-color: var(--secondary-color);
+    color: var(--black-text);
+    width: calc(var(--size) * 55);
+    max-width: 100%;
+    border-radius: calc(var(--size) * 1);
+}
+.menu-item{
+    background-color: var(--third-color);
+    color: var(--black-text);
     width: calc(var(--size) * 55);
     max-width: 100%;
     border-radius: calc(var(--size) * 1);
@@ -124,7 +131,7 @@
 }
 .featured-card-section{
     width: 80%;
-    background-color: #638a6f;
+    background-color: var(--secondary-color);
     border-radius: calc(var(--size) * 1);
     padding: calc(var(--size) * 4);
 }
@@ -171,7 +178,7 @@
     width: 100%;
 }
 .add-button{
-    background-color: #e5fd97;
+    background-color: var(--secondary-color);
 }
 .cancel-button{
     background-color: #f25844;

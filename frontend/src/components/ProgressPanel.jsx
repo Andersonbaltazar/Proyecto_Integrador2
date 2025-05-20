@@ -23,8 +23,8 @@ const ProgressPanel = () => {
     <div className="progress-panel-section d-flex gap-5 flex-wrap">
       {fruits.length === 0 ? (
         <div className="progress-card-empty d-flex flex-column text-center gap-2">
-          <h3 className='title-progress-card-empty'>No hay cultivos registrados</h3>
-          <p className='paragraph-progress-card-empty'>Agrega tu primer cultivo para comenzar a ver su progreso 📈</p>
+          <h3 className='title-progress-card-empty'>No hay sembríos registrados</h3>
+          <p className='paragraph-progress-card-empty'>Agrega tu primer sembrío para comenzar a ver su progreso 📈</p>
           <CultivoModal />
         </div>
       ) : (
