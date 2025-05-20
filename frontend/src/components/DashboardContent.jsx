@@ -8,7 +8,6 @@ const DashboardContent = () => {
             <h1 className="title-header-dashboard">Inicio</h1>
         </header>
         <section className="progress-container gap-2">
-            <h1 className="title-progress-container">Progreso de tus sembríos</h1>
             <ProgressPanel />
         </section>
     </article>

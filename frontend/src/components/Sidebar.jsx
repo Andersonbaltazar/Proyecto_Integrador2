@@ -11,7 +11,10 @@ const Sidebar = () => {
         <section className="menu d-flex justify-center">
             <nav className="menu-item-list d-flex flex-column gap-3">
                 <SidebarMenuItem provider="Inicio" />
-                <SidebarMenuItem provider="Configuracion" />
+                <SidebarMenuItem provider="Cultivos" />
+                <SidebarMenuItem provider="Calendario" />
+                <SidebarMenuItem provider="Configuración" />
+                <SidebarMenuItem provider="Cerrar Sesión" />
             </nav>
         </section>
         <footer className="footer-sidebar d-flex justify-center">

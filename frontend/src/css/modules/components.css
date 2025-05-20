@@ -104,8 +104,9 @@
 .menu-item-list{
     width: 80%;
 }
-.menu-item{
-    background-color: #e4f798;
+.menu-item-active{
+    background-color: #dbf379;
+    color: var(--primary-text-color);
     width: calc(var(--size) * 55);
     max-width: 100%;
     border-radius: calc(var(--size) * 1);
@@ -134,7 +135,7 @@
     font-size: calc(var(--size) * 3);
 }
 .dashboard-content-section{
-    width: 100%;
+    width: calc(100vw - calc(var(--size) * 70));
     height: 100%;
     padding: calc(var(--size) * 5);
 }
@@ -143,34 +144,54 @@
 }
 .title-header-dashboard{
     font-size: calc(var(--size) * 10);
-    color: #224f45;
+    color: var(--primary-text-color);
 }
 .progress-container{
     width: 100%;
     margin-top: calc(var(--size) * 5);
 }
 .title-progress-container{
-    font-size: calc(var(--size) * 6);
-    color: #224f45;
+    font-size: calc(var(--size) * 8);
+    color: var(--primary-text-color);
     font-weight: 500;
 }
 .progress-panel-section{
     width: 100%;
     padding: calc(var(--size) * 5);
 }
+.progress-card-empty{
+    width: 100%;
+}
+.title-progress-card-empty{
+    font-size: calc(var(--size) * 7);
+    font-weight: 400;
+    color: var(--primary-text-color);
+}
+.add-button-container{
+    width: 100%;
+}
+.add-button{
+    background-color: #e5fd97;
+}
+.cancel-button{
+    background-color: #f25844;
+}
+.text-add-button{
+    color: var(--primary-text-color);
+}
 .progress-card-1{
     width: calc(var(--size) * 45);
-    background-color: #224f45;
+    background-color: var(--primary-color);
     border-radius: calc(var(--size) * 1);
     padding: calc(var(--size) * 5);
     color: var(--text-white);
 }
 .progress-card-2{
     width: calc(var(--size) * 45);
-    background-color: #f8ffdd;
+    background-color: #e5fd97;
     border-radius: calc(var(--size) * 1);
     padding: calc(var(--size) * 5);
-    color: #224f45;
+    color: var(--primary-text-color);
 }
 .img-progress-card{
     width: 90%;
@@ -182,4 +203,47 @@
 }
 .paragraph-progress-card{
     font-size: calc(var(--size) * 4);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.modal-content {
+  background-color: white;
+  padding: calc(var(--size) * 8);
+  border-radius: calc(var(--size) * 3);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+.modal-title{
+    font-size: calc(var(--size) * 7);
+    color: var(--primary-text-color);
+    margin-bottom: calc(var(--size) * 7.5);
+}
+.form-container{
+    width: 100%;
+    height: 100%;
+}
+.form-group{
+    width: 100%;
+    height: 100%;
+}
+.form-label{
+    width: 35%;
+    font-size: calc(var(--size) * 4);
+    color: var(--text-muted);
+}
+.form-input{
+    width: 65%;
+    padding: calc(var(--size) * 2.5);
+    border: 1px solid var(--border-color);
+    border-radius: calc(var(--size) * 1);
 }
