@@ -1,11 +1,11 @@
 .auth-layout{
     width: 100vw;
-    height: 100%;
-    flex-direction: column;
+    height: 100vh;
 }
 .auth-layout-container{
     width: 45%;
     height: 100%;
+    gap: calc(var(--size) * 15);
 }
 .auth-layout-header{
     width: 90%;

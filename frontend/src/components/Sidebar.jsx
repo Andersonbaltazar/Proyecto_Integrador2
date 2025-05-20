@@ -1,8 +1,9 @@
 import React from 'react';
 import SidebarMenuItem from './SidebarMenuItem';
 import FeaturedCard from './FeaturedCard';
+import LogoutButton from './LogoutButton';
 
-const Sidebar = () => {
+const Sidebar = ({ setIsAuthenticated }) => {
   return (
     <aside className="sidebar-layout d-flex flex-column">
         <header className="header-sidebar d-flex justify-center align-center">
@@ -14,7 +15,7 @@ const Sidebar = () => {
                 <SidebarMenuItem provider="Cultivos" />
                 <SidebarMenuItem provider="Calendario" />
                 <SidebarMenuItem provider="Configuración" />
-                <SidebarMenuItem provider="Cerrar Sesión" />
+                <LogoutButton setIsAuthenticated={setIsAuthenticated} />
             </nav>
         </section>
         <footer className="footer-sidebar d-flex justify-center">

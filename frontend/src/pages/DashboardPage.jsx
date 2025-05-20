@@ -1,6 +1,8 @@
 import React from 'react';
 import DashboardLayout from "../components/DashboardLayout";
 
-export default function DashboardPage() {
-  return <DashboardLayout />;
-}
+const DashboardPage = ({ setIsAuthenticated }) => {
+  return <DashboardLayout setIsAuthenticated={setIsAuthenticated} />;
+};
+
+export default DashboardPage;
