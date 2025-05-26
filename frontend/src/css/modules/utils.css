@@ -1,0 +1,13 @@
+/* Text  */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-bold {
+    font-weight: bold; 
+}
+.underline{
+    text-decoration: underline;
+}
