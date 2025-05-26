@@ -13,16 +13,19 @@
         <input type="text" id="nombre" name="nombre" required="required"/>
     </div>
     <div>
+        <label for="tipoTerreno">Tipo de Terreno:</label><br>
+        <select id="tipoTerreno" name="tipoTerrenoId">
+            <option value="">-- Selecciona un tipo --</option>
+            <option th:each="tipo : ${tiposTerreno}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+        </select>
+    </div>
+    <div>
         <label for="fechaSiembra">Fecha de Siembra:</label><br>
         <input type="date" id="fechaSiembra" name="fechaSiembra"/>
     </div>
     <div>
-        <label for="departamento">Departamento:</label><br>
-        <input type="text" id="departamento" name="departamento"/>
-    </div>
-    <div>
-        <label for="distrito">Distrito:</label><br>
-        <input type="text" id="distrito" name="distrito"/>
+        <label for="descripcion">Descripción del Cultivo:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="4" cols="50"></textarea>
     </div>
     <button type="submit">Guardar Cultivo</button>
 </form>

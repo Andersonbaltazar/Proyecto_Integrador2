@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seguimiento de Cultivo</title>
+</head>
+<body>
+<h1>Seguimiento de <span th:text="${cultivoNombre}"></span></h1>
+<p>Fecha de Siembra: <span th:text="${#dates.format(fechaSiembra, 'yyyy-MM-dd')}"></span></p>
+
+<h2>Etapas de Desarrollo</h2>
+<div th:each="etapaInfo : ${etapas}">
+    <h3><span th:text="${etapaInfo.key}"></span></h3>
+    <p th:text="${etapaInfo.value}"></p>
+    <hr/>
+</div>
+
+<p><a href="/recomendar">Volver a Recomendaciones</a></p>
+</body>
+</html>

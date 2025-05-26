@@ -12,6 +12,19 @@
             <option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}" th:text="${cultivo.nombre}"></option>
         </select>
     </div>
+    <div th:if="${cultivoSeleccionado}">
+        <button type="button">
+            <a th:href="@{/seguimiento_cultivo(cultivoId=${cultivoSeleccionado.id})}">
+                Ver Seguimiento del Cultivo
+            </a>
+        </button>
+        <br><br>
+    </div>
+    <br>
+    <div>
+        <label for="userContext">Tu conocimiento sobre el tema (opcional):</label><br>
+        <textarea id="userContext" name="userContext" rows="3" cols="50"></textarea>
+    </div>
     <br>
     <div>
         <label for="pregunta">Ingresa tu pregunta sobre agricultura:</label><br>
@@ -26,6 +39,14 @@
     <p th:if="${cultivoSeleccionado}"><b>Cultivo seleccionado:</b> <span th:text="${cultivoSeleccionado.nombre}"></span></p>
     <p><b>Recomendación:</b></p>
     <pre th:text="${recomendacion}"></pre>
+</div>
+<div th:if="${mostrandoSeguimiento}">
+    <h2>Seguimiento del Cultivo de <span th:text="${cultivoNombre}"></span></h2>
+    <p th:if="${fechaSiembra}">Fecha de Siembra: <span th:text="${#temporals.format(fechaSiembra, 'dd/MM/yyyy')}"></span></p>
+    <div th:each="etapa : ${etapas}">
+        <h3><span th:text="${etapa.key}"></span></h3>
+        <p th:text="${etapa.value}"></p>
+    </div>
 </div>
 
 <p><a href="/">Volver a la página principal</a></p>

@@ -13,8 +13,11 @@ public class Cultivo {
 
     private String nombre;
     private LocalDate fechaSiembra;
-    private String departamento;
-    private String distrito;
+    private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_terreno_id")
+    private TipoTerreno tipoTerreno;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -24,11 +27,11 @@ public class Cultivo {
     public Cultivo() {
     }
 
-    public Cultivo(String nombre, LocalDate fechaSiembra, String departamento, String distrito, Usuario usuario) {
+    public Cultivo(String nombre, LocalDate fechaSiembra, String descripcion, TipoTerreno tipoTerreno, Usuario usuario) {
         this.nombre = nombre;
         this.fechaSiembra = fechaSiembra;
-        this.departamento = departamento;
-        this.distrito = distrito;
+        this.descripcion = descripcion;
+        this.tipoTerreno = tipoTerreno;
         this.usuario = usuario;
     }
 
@@ -57,20 +60,20 @@ public class Cultivo {
         this.fechaSiembra = fechaSiembra;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public TipoTerreno getTipoTerreno() {
+        return tipoTerreno;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
+    public void setTipoTerreno(TipoTerreno tipoTerreno) {
+        this.tipoTerreno = tipoTerreno;
     }
 
     public Usuario getUsuario() {

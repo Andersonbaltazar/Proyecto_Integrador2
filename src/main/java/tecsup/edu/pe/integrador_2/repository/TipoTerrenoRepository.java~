@@ -1,0 +1,4 @@
+package tecsup.edu.pe.integrador_2.repository;
+
+public interface TipoTerrenoRepository {
+}
