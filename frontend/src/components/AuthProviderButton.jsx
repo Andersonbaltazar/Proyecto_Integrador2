@@ -11,13 +11,13 @@ const logos = {
   Microsoft: microsoftLogo,
 };
 
-const AuthProviderButton = ({ provider, url }) => {
+const AuthProviderButton = ({ provider }) => {
   const logo = logos[provider];
 
   return (
     <button className="d-flex gap-5 auth-button align-center">
       <img className="img-logo-auth-button" src={logo} alt={`${provider} logo`} />
-      <a className="text-auth-button" href={url}>Continuar con {provider}</a>
+      <span className="text-auth-button">Continuar con {provider}</span>
     </button>
   );
 };

@@ -5,17 +5,20 @@ import HeroImage from "./HeroImage";
 
 const AuthLayout = () => {
   return (
-    <div className="d-flex auth-layout justify-center align-center flex-wrap">
+    <div className="d-flex auth-layout justify-center flex-wrap">
       <div className="d-flex flex-column auth-layout-container justify-center align-center gap-5">
         <header className="d-flex flex-column auth-layout-header gap-2 align-center">
-            <h1 className="title-auth-layout text-center">AgroTechAI</h1>
+            <h1 className="title-auth-layout text-center">¡Bienvenido!</h1>
             <p className="gretting-auth-layout text-center">
-                Bienvenido a <strong>AgroTechAI</strong>. Ingresa a nuestra aplicación
+                Bienvenido a <strong>Nombre</strong>. Ingresa a nuestra aplicación
                 usando una de las opciones.
             </p>
         </header>
         <section className="list-auth-buttons gap-2 d-flex flex-column align-center">
-          <AuthProviderButton provider="Google" url="http://localhost:8080/oauth2/authorization/google" />
+          <AuthProviderButton provider="Google" />
+          <AuthProviderButton provider="Facebook" />
+          <AuthProviderButton provider="X" />
+          <AuthProviderButton provider="Microsoft" />
         </section>
         <section className="info-text-auth-layout">
             <p className="paragraph-auth-layout text-center">
