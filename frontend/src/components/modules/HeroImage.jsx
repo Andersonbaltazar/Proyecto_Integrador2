@@ -1,5 +1,5 @@
 import React from 'react';
-import authImage from '../assets/images/authFondo.webp';
+import authImage from '../../assets/images/authFondo.webp';
 
 const HeroImage = () => {
   return (

@@ -1,11 +1,6 @@
 import React from 'react';
-import ProgressPanelItem from './ProgressPanelItem';
-import CultivoModal from './CultivoModal';
-import mangoImg from '../assets/images/mango.jpeg';
-import pearImg from '../assets/images/pear.jpg';
-import avocadoImg from '../assets/images/avocado.jpg';
-import carrotImg from '../assets/images/carrot.jpg';
-import AddButton from './AddButton';
+import ProgressPanelItem from '../components/ProgressPanelItem';
+import CultivoModal from '../CultivoModal';
 
 const fruits = [
   // Descomenta esto si quieres probar la tarjeta vacía

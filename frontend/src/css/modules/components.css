@@ -107,6 +107,8 @@
 .menu-item-active{
     background-color: var(--secondary-color);
     color: var(--black-text);
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
     width: calc(var(--size) * 55);
     max-width: 100%;
     border-radius: calc(var(--size) * 1);
@@ -114,9 +116,17 @@
 .menu-item{
     background-color: var(--third-color);
     color: var(--black-text);
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
     width: calc(var(--size) * 55);
     max-width: 100%;
     border-radius: calc(var(--size) * 1);
+    transition: all 0.3s ease-in-out;
+}
+.menu-item:hover{
+    background-color: var(--secondary-color);
+    color: var(--black-text);
+    border: 1px solid transparent;
 }
 .icon{
     height: 100%;
@@ -174,9 +184,21 @@
     font-weight: 400;
     color: var(--primary-text-color);
 }
-.add-button-container{
+
+.button {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.button-container{
     width: 100%;
 }
+
 .add-button{
     background-color: var(--secondary-color);
 }

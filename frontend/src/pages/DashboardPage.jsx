@@ -1,6 +1,14 @@
 import React from 'react';
-import DashboardLayout from "../components/DashboardLayout";
+import Sidebar from '../components/layouts/Sidebar';
+import DashboardContent from '../components/DashboardContent';
 
-export default function DashboardPage() {
-  return <DashboardLayout />;
-}
+const DashboardPage = () => {
+  return (
+    <div className="dashboard-layout d-flex">
+      <Sidebar />
+      <DashboardContent />
+    </div>
+  );
+};
+
+export default DashboardPage;

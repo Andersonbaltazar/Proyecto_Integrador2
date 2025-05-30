@@ -1,6 +1,6 @@
 import React from 'react';
-import ProgressPanel from './ProgressPanel';
-import CropLifecycle from './CropLifeCycle';
+import ProgressPanel from './modules/ProgressPanel';
+import CropLifecycle from './components/CropLifeCycle';
 
 const DashboardContent = () => {
   return (
