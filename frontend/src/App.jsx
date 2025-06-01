@@ -4,6 +4,7 @@ import DashboardPage from './pages/DashboardPage';
 import "./css/index.css";
 import LoginPage from './pages/LoginPage';
 import CropsPage from './pages/CropsPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<DashboardPage />} />
         <Route path="/crops" element={<CropsPage />} />
+        <Route path="/crops/:id" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );

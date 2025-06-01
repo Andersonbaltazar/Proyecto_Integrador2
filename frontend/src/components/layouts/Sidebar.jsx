@@ -19,7 +19,7 @@ const Sidebar = () => {
             <Link className={currentPath === '/home' ? 'menu-item-active' : 'menu-item'} to="/home">
                 <SidebarMenuItem provider="Inicio" />
             </Link>
-            <Link className={currentPath === '/crops' ? 'menu-item-active' : 'menu-item'} to="/crops">
+            <Link className={currentPath.startsWith('/crops') ? 'menu-item-active' : 'menu-item'} to="/crops">
                 <SidebarMenuItem provider="Cultivos" />
             </Link>
             <Link className={currentPath === '/calendar' ? 'menu-item-active' : 'menu-item'} to="/calendar">

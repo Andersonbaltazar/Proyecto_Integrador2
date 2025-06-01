@@ -25,8 +25,8 @@ const Button = ({
       disabled={disabled}
       {...rest}
     >
-      <span className="text-button">{label}</span>
       {children}
+      <span className="text-button">{label}</span>
     </button>
   );
 };

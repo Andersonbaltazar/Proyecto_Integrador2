@@ -20,6 +20,7 @@ const CultivoModal = () => {
       {showModal && (
         <Modal title="Agregar Sembrío">
             <Form action="/api/cultivos" title="Cultivo" customClass="d-flex flex-column gap-5">
+                <FormLabel label="Nombre del Sembrío" type="text" placeholder="ej. Sembrío A" />
                 <FormLabel label="Nombre del cultivo" type="text" placeholder="ej. Zanahoria" />
                 <TextAreaInput label="Descripción" name="descripcion" placeholder="Describe brevemente el cultivo..." rows={5} required={true} />
                 <SelectInput label="Tipo de suelo" name="tipo_suelo" required={true} options={[{ value: 'arcilloso', label: 'Arcilloso' }, { value: 'arenoso', label: 'Arenoso' }, { value: 'limoso', label: 'Limoso' }]} />
