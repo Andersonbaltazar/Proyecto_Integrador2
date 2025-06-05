@@ -198,7 +198,12 @@
 .button-container{
     width: 100%;
 }
-
+.button--primary{
+    background-color: var(--primary-color);
+}
+.button--secondary{
+    background-color: var(--secondary-color);
+}
 .add-button{
     background-color: var(--secondary-color);
 }
@@ -282,4 +287,24 @@
   height: 100vh;            
   overflow-y: auto;
   overflow-x: hidden; 
+}
+.search-bar {
+  width: 80%;
+  border-bottom: 2px solid var(--primary-color);
+}
+.search-input {
+  width: 100%;
+  color: var(--primary-color);
+  font-size: calc(var(--size) * 3.5);
+  font-weight: 500;
+  padding: calc(var(--size) * 2);
+  border: none;
+  outline: none;
+}
+.search-input::placeholder {
+  color: var(--primary-color);
+  opacity: 1;
+}
+.search-icon{
+    color: var(--text-muted);
 }

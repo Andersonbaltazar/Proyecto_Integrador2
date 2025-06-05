@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProgressPanelItem = ({ title, growth, image, customClass }) => {
+const CropsListItem = ({ title, growth, image, customClass }) => {
   return (
     <button className={`${customClass} d-flex flex-column gap-2 justify-center`}>
       <div className="img-container-progress-card d-flex justify-center">
@@ -12,4 +12,4 @@ const ProgressPanelItem = ({ title, growth, image, customClass }) => {
   );
 };
 
-export default ProgressPanelItem;
+export default CropsListItem;
