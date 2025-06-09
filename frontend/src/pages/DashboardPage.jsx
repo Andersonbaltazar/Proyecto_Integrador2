@@ -5,8 +5,8 @@ const DashboardPage = () => {
   return (
     <div className="dashboard-layout d-flex">
         <Sidebar />
-        <article className="dashboard-content-section d-flex flex-column">
-            <header className="header-dashboard-content d-flex flex-column">
+        <article className="dashboard-content-container d-flex flex-column">
+            <header className="header-dashboard-container d-flex flex-column">
                 <h1 className="title-header-dashboard">Inicio</h1>
             </header>
         </article>

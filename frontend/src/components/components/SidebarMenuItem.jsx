@@ -1,5 +1,3 @@
-import React from 'react';
-
 const iconos = {
   Inicio: <ion-icon name="home-sharp"></ion-icon>,
   Cultivos: <ion-icon name="reader"></ion-icon>,
@@ -11,10 +9,10 @@ const iconos = {
 const SidebarMenuItem = ({ provider }) => {
 
   return (
-    <a className="d-flex gap-2 align-center">
+    <div className="d-flex gap-2 align-center">
         <span className='icon d-flex align-center'>{iconos[provider]}</span>
         <span className='text-menu-item'>{provider}</span>
-    </a>
+    </div>
   );
 };
 

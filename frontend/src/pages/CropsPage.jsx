@@ -28,8 +28,8 @@ const CropsPage = () => {
     <>
     <div className="dashboard-layout d-flex">
       <Sidebar />
-      <article className="dashboard-content-section d-flex flex-column">
-        <header className="header-dashboard-content d-flex flex-column gap-4">
+      <article className="dashboard-content-container d-flex flex-column">
+        <header className="header-dashboard-container d-flex flex-column gap-4">
           <h1 className="title-header-dashboard">Sembríos</h1>
           {hasFruits && (
             <div className="dashboard-search-controls d-flex justify-between align-center gap-2">
