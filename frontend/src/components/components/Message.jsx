@@ -1,7 +1,7 @@
 const Message = ({ message }) => {
   return (
     <div className={`message ${message.from === 'user' ? 'user-message' : 'ai-message'}`}>
-      <p>{message.text}</p>
+      <p className="chat-message">{message.text}</p>
     </div>
   );
 };
