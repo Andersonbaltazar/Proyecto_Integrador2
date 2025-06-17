@@ -155,7 +155,7 @@
 .dashboard-content-container{
     width: calc(100vw - calc(var(--size) * 70));
     height: 100%;
-    padding: calc(var(--size) * 3);
+    padding: calc(var(--size) * 4);
 }
 .header-dashboard-container{
     width: 100%;
@@ -317,7 +317,6 @@
 .card {
   padding: calc(var(--size) * 4);
   border-radius: calc(var(--size) * 2);
-  background-color: var(--secondary-color);
 }
 
 .ai-chat-section{
@@ -355,15 +354,14 @@
 .ai-message{
     text-align: left;
 }
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
 .chrono-card {
-  margin-top: -80px; /* sube la tarjeta */
+  margin-top: -80px;
 }
 .cXGyJP{
     height: 60% !important;  
+}
+.LxoUl.horizontal{
+    justify-content: center !important;
 }
 .hbKdQf.horizontal{
     min-height: 90px !important;

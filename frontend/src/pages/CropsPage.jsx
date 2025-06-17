@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import Sidebar from '../components/layouts/Sidebar';
 import CropsList from '../components/modules/CropsList';
@@ -15,9 +14,9 @@ import carrotImg from '../assets/images/carrot.jpg';
 const CropsPage = () => {
   const [fruits] = useState([
     { id: 1, title: "Mango", growth: 48, image: mangoImg },
-    //{ id: 2, title: "Pear", growth: 65, image: pearImg },
-    //{ id: 3, title: "Avocado", growth: 94, image: avocadoImg },
-    //{ id: 4, title: "Carrot", growth: 82, image: carrotImg },
+    { id: 2, title: "Pear", growth: 65, image: pearImg },
+    { id: 3, title: "Avocado", growth: 94, image: avocadoImg },
+    { id: 4, title: "Carrot", growth: 82, image: carrotImg },
   ]);
 
   const hasFruits = fruits.length > 0;

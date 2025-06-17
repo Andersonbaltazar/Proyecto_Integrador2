@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CropsListItem = ({ title, growth, image, customClass }) => {
   return (
@@ -10,6 +11,13 @@ const CropsListItem = ({ title, growth, image, customClass }) => {
       <p className="paragraph-progress-card text-center">{growth}% Crecimiento</p>
     </button>
   );
+};
+
+CropsListItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  growth: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  customClass: PropTypes.string
 };
 
 export default CropsListItem;

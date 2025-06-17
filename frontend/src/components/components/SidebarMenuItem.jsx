@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const iconos = {
   Inicio: <ion-icon name="home-sharp"></ion-icon>,
   Cultivos: <ion-icon name="reader"></ion-icon>,
@@ -14,6 +16,10 @@ const SidebarMenuItem = ({ provider }) => {
         <span className='text-menu-item'>{provider}</span>
     </div>
   );
+};
+
+SidebarMenuItem.propTypes = {
+  provider: PropTypes.string.isRequired,
 };
 
 export default SidebarMenuItem;

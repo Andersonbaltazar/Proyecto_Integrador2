@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Form from './widgets/Form';
 import FormLabel from './widgets/FormLabel';
 import Modal from './widgets/Modal';
@@ -7,7 +6,6 @@ import SelectInput from './widgets/SelectInput';
 import TextAreaInput from './widgets/TextAreaInput';
 
 const CultivoModal = ({show, toggle}) => {
-
   return (
     <>
       {show && (

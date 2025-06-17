@@ -8,13 +8,13 @@ const AiChat = () => {
   const handleSend = () => {
     if (input.trim() === '') return;
 
-    const newMessage = { from: 'user', text: input };
+    const newMessage = { id: Date.now() + Math.random(), from: 'user', text: input };
     setMessages((prev) => [...prev, newMessage]);
 
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { from: 'ai', text: 'Esta es una respuesta automática del asistente AI.' },
+        { id: Date.now() + Math.random(), from: 'ai', text: 'Esta es una respuesta automática del asistente AI.' },
       ]);
     }, 500);
 
@@ -29,8 +29,8 @@ const AiChat = () => {
           {messages.length === 0 ? (
             <p className="paragraph-new-chat">¿Cómo puedo ayudarte hoy?</p>
           ) : (
-            messages.map((message, index) => (
-              <Message key={index} message={message} />
+            messages.map((message) => (
+              <Message key={message.id} message={message} />
             ))
           )}
         </div>

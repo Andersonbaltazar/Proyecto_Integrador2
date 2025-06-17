@@ -1,9 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProgressPanelItem from '../components/CropsListItem';
 import CultivoModal from '../CultivoModal';
 import Button from '../widgets/Button';
+import PropTypes from 'prop-types';
 
 const CropsList = ({ fruits }) => {
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +39,10 @@ const CropsList = ({ fruits }) => {
     <CultivoModal show={showModal} toggle={toggleModal} />
     </>
   );
+};
+
+CropsList.propTypes = {
+  fruits: PropTypes.array.isRequired,
 };
 
 export default CropsList;

@@ -41,13 +41,15 @@ const items = [
 
 const Timeline = () => {
   return (
-    <div className="w-60 h-full" style={{ overflowX: "auto" }}>
-    <Chrono
-        items={items}
-        mode="HORIZONTAL"
-        disableToolbar={true}
-        hideControls={false}
-    />
+    <div className="w-full h-full" style={{ overflowX: "auto" }}>
+      <div className="w-full h-full d-flex align-center">
+        <Chrono
+            items={items}
+            mode="HORIZONTAL"
+            disableToolbar={true}
+            hideControls={false}
+        />
+      </div>
     </div>
   );
 };

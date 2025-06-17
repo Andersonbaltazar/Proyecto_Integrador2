@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation  } from 'react-router-dom';
 import SidebarMenuItem from '../components/SidebarMenuItem';
 import FeaturedCard from '../components/FeaturedCard';

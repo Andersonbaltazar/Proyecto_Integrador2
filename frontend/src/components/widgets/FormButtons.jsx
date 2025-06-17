@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 
 const FormButtons = ({ label, customclass, toggleModal }) => {
@@ -17,6 +17,12 @@ const FormButtons = ({ label, customclass, toggleModal }) => {
       />
     </div>
   );
+};
+
+FormButtons.propTypes = {
+  label: PropTypes.string.isRequired,
+  customclass: PropTypes.string,
+  toggleModal: PropTypes.func.isRequired,
 };
 
 export default FormButtons;
