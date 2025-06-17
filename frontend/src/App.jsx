@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import CropsPage from "./pages/CropsPage";
+import DetailPage from "./pages/DetailPage";
+import sownData from "./data/sown.data";
 import "./css/index.css";
-import LoginPage from './pages/LoginPage';
-import CropsPage from './pages/CropsPage';
-import DetailPage from './pages/DetailPage';
 
 function App() {
+  const [sownDataState, setSownDataState] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredSown = sownDataState.filter((sown) =>
+    sown.cultivo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    setSownDataState(sownData);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -13,7 +26,10 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<DashboardPage />} />
-        <Route path="/crops" element={<CropsPage />} />
+        <Route
+          path="/crops"
+          element={<CropsPage data={filteredSown} onSearch={setSearchTerm} />}
+        />
         <Route path="/crops/:id" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
