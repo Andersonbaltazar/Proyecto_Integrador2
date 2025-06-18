@@ -30,7 +30,7 @@ const CropsPage = ({ data, onSearch }) => {
               </div>
             </div>
         </header>
-        <section className="progress-container gap-2">
+        <section className="progress-container gap-2 ">
           <CropsList data={data} />
         </section>
       </article>

@@ -82,9 +82,9 @@
 .dashboard-layout{
     width: 100%;
     height: 100vh;
-    overflow: hidden; 
 }
 .sidebar-layout{
+    position: sticky;
     max-width: calc(var(--size) * 70);
     height: 100%;
     background-color: #1d492c;
@@ -156,6 +156,7 @@
     width: calc(100vw - calc(var(--size) * 70));
     height: 100%;
     padding: calc(var(--size) * 4);
+    overflow-y: visible;
 }
 .header-dashboard-container{
     width: 100%;

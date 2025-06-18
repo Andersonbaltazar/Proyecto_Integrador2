@@ -8,6 +8,9 @@
 .text-bold {
     font-weight: bold; 
 }
+.text-justify {
+    text-align: justify;
+}
 .underline{
     text-decoration: underline;
 }
