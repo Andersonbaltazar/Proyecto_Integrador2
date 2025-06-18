@@ -1,44 +1,36 @@
-import { useState, useEffect  } from 'react';
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import DashboardPage from './pages/DashboardPage';
-import LoginPage from './pages/LoginPage';
+import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import CropsPage from "./pages/CropsPage";
+import DetailPage from "./pages/DetailPage";
+import sownData from "./data/sown.data";
 import "./css/index.css";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [sownDataState, setSownDataState] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredSown = sownDataState.filter((sown) =>
+    sown.cultivo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/user", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setIsAuthenticated(data.authenticated);
-      })
-      .catch(() => setIsAuthenticated(false));
+    setSownDataState(sownData);
   }, []);
-
-  if (isAuthenticated === null) return <div>Cargando...</div>;
 
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/home" element={<DashboardPage />} />
         <Route
-          path="/login"
-          element={
-            isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />
-          }
+          path="/crops"
+          element={<CropsPage data={filteredSown} onSearch={setSearchTerm} />}
         />
-        <Route
-          path="/dashboard"
-          element={
-            isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />
-          }
-        />
-        <Route
-          path="*"
-          element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />}
-        />
+        <Route path="/crops/:id" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );

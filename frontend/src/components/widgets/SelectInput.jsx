@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const SelectInput = ({ label, name, options = [], required = false }) => {
   return (
@@ -6,14 +6,26 @@ const SelectInput = ({ label, name, options = [], required = false }) => {
       <label htmlFor={name} className="form-label text-left">{label}:</label>
       <select name={name} id={name} className="form-input" required={required}>
         <option value="">-- Selecciona una opción --</option>
-        {options.map((opt, index) => (
-          <option key={index} value={opt.value}>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
         ))}
       </select>
     </div>
   );
+};
+
+SelectInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
+  required: PropTypes.bool,
 };
 
 export default SelectInput;

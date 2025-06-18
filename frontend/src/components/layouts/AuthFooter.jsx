@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AuthFooter = () => {
   return (
     <footer className="d-flex auth-footer justify-center" aria-label="Enlaces de pie de página">

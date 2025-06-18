@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Modal = ({ title, children }) => {
   return (
@@ -9,6 +9,11 @@ const Modal = ({ title, children }) => {
         </div>
     </div>    
   );
+};
+
+Modal.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 
 export default Modal;

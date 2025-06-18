@@ -1,8 +1,8 @@
 import React from 'react';
-import googleLogo from '../assets/logos/google.webp';
-import facebookLogo from '../assets/logos/facebook.png';
-import xLogo from '../assets/logos/x.png';
-import microsoftLogo from '../assets/logos/microsoft.png';
+import googleLogo from '../../assets/logos/google.webp';
+import facebookLogo from '../../assets/logos/facebook.png';
+import xLogo from '../../assets/logos/x.png';
+import microsoftLogo from '../../assets/logos/microsoft.png';
 
 const logos = {
   Google: googleLogo,
