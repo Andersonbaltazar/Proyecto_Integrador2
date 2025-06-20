@@ -8,6 +8,21 @@
 .text-bold {
     font-weight: bold; 
 }
+.text-justify {
+    text-align: justify;
+}
 .underline{
     text-decoration: underline;
+}
+.fs-3{
+    font-size: calc(var(--size) * 3);
+}
+.fs-4{
+    font-size: calc(var(--size) * 4);
+}
+.fs-5{
+    font-size: calc(var(--size) * 5);
+}
+.fs-6{
+    font-size: calc(var(--size) * 6);
 }

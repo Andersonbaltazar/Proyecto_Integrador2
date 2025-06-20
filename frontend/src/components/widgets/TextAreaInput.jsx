@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextAreaInput = ({ label, name, placeholder = "", rows = 4, required = false }) => {
   return (
@@ -7,6 +7,14 @@ const TextAreaInput = ({ label, name, placeholder = "", rows = 4, required = fal
       <textarea id={name} name={name} className="form-input" placeholder={placeholder} rows={rows} required={required}></textarea>
     </div>
   );
+};
+
+TextAreaInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  rows: PropTypes.number,
+  required: PropTypes.bool,
 };
 
 export default TextAreaInput;
