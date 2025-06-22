@@ -62,8 +62,8 @@ const AiChat = () => {
           )}
           <div ref={messagesEndRef} />
         </div>
-        <div className="d-flex flex-column gap-1 mt-2 justify-center align-center mt-a w-fulls">
-          <div className="w-80 br-3 background-secondary p-2">
+        <div className="d-flex flex-column mt-2 justify-center align-center mt-a w-fulls">
+          <div className="d-flex flex-column w-80 br-3 background-secondary p-2 gap-3">
             <div className="w-full">
               <input
                 type="text"
@@ -71,16 +71,32 @@ const AiChat = () => {
                 placeholder="Escribe tu mensaje..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
               />
             </div>
             <div className="d-flex justify-between w-full">
               <DropUp>
-                <div className="dropup-item">Nueva Conversación</div>
-                <div className="dropup-item">Agregar Archivo</div>
-                <div className="dropup-item">Añadir Experiencia</div>
+                <button
+                  className="dropup-item button w-full"
+                  type="button"
+                  onClick={() => setMessages([])}
+                >
+                  Nueva Conversación
+                </button>
+                <button className="dropup-item button w-full">Agregar Archivo</button>
+                <button className="dropup-item button w-full">Añadir Experiencia</button>
               </DropUp>
-              <Button type="sumbit" onClick={handleSend}>
-                <ion-icon name="send"></ion-icon>
+              <Button
+                className="chat-button"
+                type="sumbit"
+                onClick={handleSend}
+              >
+                <ion-icon name="arrow-up"></ion-icon>
               </Button>
             </div>
           </div>

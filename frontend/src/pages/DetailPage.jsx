@@ -83,7 +83,7 @@ const DetailPage = () => {
                     </div>
                   </div>
                   <div className="d-flex w-full justify-center mt-a">
-                    <Button label="Volver" onClick={() => navigate(-1)} />
+                    <Button className="button" label="Volver" onClick={() => navigate(-1)} />
                   </div>
                 </div>
                 <div className="w-60 h-full d-flex flex-column">
@@ -91,10 +91,12 @@ const DetailPage = () => {
                   {showGraph()}
                   <div className="w-full d-flex gap-4 justify-center">
                     <Button
+                      className="button"
                       label="Linea de Progreso"
                       onClick={() => setGraph("Timeline")}
                     />
                     <Button
+                      className="button"
                       label="Linea de Comercio"
                       onClick={() => setGraph("Comercio")}
                     />

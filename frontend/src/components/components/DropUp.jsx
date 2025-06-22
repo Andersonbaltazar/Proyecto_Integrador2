@@ -23,8 +23,8 @@ const DropUp = ({ children }) => {
 
   return (
     <div className="dropup" ref={dropupRef}>
-      <Button onClick={toggleDropup}>
-        <ion-icon name="ellipsis-vertical"></ion-icon>
+      <Button className="chat-button" onClick={toggleDropup}>
+        <ion-icon name="add"></ion-icon>
       </Button>
 
       {open && (

@@ -20,7 +20,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`button ${variantClass} ${className}`}
+      className={`${variantClass} ${className}`}
       onClick={onClick}
       disabled={disabled}
       {...rest}
