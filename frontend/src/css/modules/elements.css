@@ -33,3 +33,13 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}

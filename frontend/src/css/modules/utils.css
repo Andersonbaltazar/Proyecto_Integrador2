@@ -17,6 +17,9 @@
 .fs-3{
     font-size: calc(var(--size) * 3);
 }
+.fs-3-5{
+    font-size: calc(var(--size) * 3.5);
+}
 .fs-4{
     font-size: calc(var(--size) * 4);
 }

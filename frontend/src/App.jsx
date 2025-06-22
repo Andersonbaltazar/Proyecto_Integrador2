@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import CropsPage from "./pages/CropsPage";
 import DetailPage from "./pages/DetailPage";
 import sownData from "./data/sown.data";
+import AiChatPage from "./pages/AiChatPage";
 import "./css/index.css";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           element={<CropsPage data={filteredSown} onSearch={setSearchTerm} />}
         />
         <Route path="/crops/:id" element={<DetailPage />} />
+        <Route path="/ai-chat" element={<AiChatPage />} />
       </Routes>
     </BrowserRouter>
   );
