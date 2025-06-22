@@ -21,10 +21,10 @@ const CropsPage = ({ data, onSearch }) => {
             <div className="dashboard-search-controls d-flex justify-between align-center gap-2">
               <SearchBar placeholder="Buscar sembríos..." onSearch={onSearch} />
               <div className="control-buttons d-flex gap-4">
-                <Button className='button--secondary' onClick={toggleModal}>
+                <Button className='button' onClick={toggleModal}>
                   <ion-icon name="add"></ion-icon>
                 </Button>
-                <Button className='button--secondary'>
+                <Button className='button'>
                   <ion-icon name="filter"></ion-icon>
                 </Button>
               </div>

@@ -8,12 +8,12 @@ const FormButtons = ({ label, customclass, toggleModal }) => {
         type="button"
         onClick={toggleModal}
         label="Cancelar"
-        className="cancel-button"
+        className="button cancel-button"
       />
       <Button
         type="submit"
         label={label}
-        className="add-button"
+        className="button add-button"
       />
     </div>
   );
