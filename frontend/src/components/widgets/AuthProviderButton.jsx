@@ -16,9 +16,9 @@ const AuthProviderButton = ({ provider }) => {
   };
 
   return (
-    <button className="d-flex gap-5 auth-button align-center" onClick={handleLogin}>
+    <button className="d-flex gap-5 auth-button align-center p-5" onClick={handleLogin}>
       <img className="img-logo-auth-button" src={logo} alt={`${provider} logo`} />
-      Continuar con {provider}
+      <p className='fw-500 fs-4'>Continuar con {provider}</p>
     </button>
   );
 };

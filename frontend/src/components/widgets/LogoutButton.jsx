@@ -16,10 +16,10 @@ function LogoutButton() {
       className="menu-item d-flex gap-2 align-center"
       onClick={handleLogout}
     >
-      <span className="icon d-flex align-center">
+      <span className="icon d-flex align-center fs-5">
         <ion-icon name="log-out-outline"></ion-icon>
       </span>
-      <span className="text-menu-item">Cerrar Sesión</span>
+      <span className="text-menu-item fw-500">Cerrar Sesión</span>
     </button>
   );
 }
