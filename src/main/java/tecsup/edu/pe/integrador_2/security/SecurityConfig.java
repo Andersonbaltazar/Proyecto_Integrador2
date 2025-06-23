@@ -1,31 +1,37 @@
 package tecsup.edu.pe.integrador_2.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
+    @Autowired
+    private MobileOAuth2TokenFilter mobileOAuth2TokenFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors().and()
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/logout-success").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/logout").permitAll()  // <-- agregar esta línea
+                .cors(cors -> cors.disable())                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/logout-success", "/api/mobile/auth").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2Login(withDefaults())
+                .addFilterBefore(mobileOAuth2TokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard")
+                )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                 )
-                .csrf(withDefaults()); // Añade esta línea para habilitar CSRF
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 }
