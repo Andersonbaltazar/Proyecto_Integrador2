@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .addFilterBefore(mobileOAuth2TokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
-                        .defaultSuccessUrl("/dashboard")
+                        .defaultSuccessUrl("/api/user", true)
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
