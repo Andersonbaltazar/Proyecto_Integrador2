@@ -9,16 +9,20 @@ import AiChatPage from "./pages/AiChatPage";
 import ProtectedRoute from "./components/components/ProtectedRoute";
 import "./css/index.css";
 import CallbackPage from "./pages/CallbackPage";
+import useAuthStore from "./store/useAuthStore";
 
 function App() {
   const [sownDataState, setSownDataState] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const checkSession = useAuthStore((state) => state.checkSession);
+  
   const filteredSown = sownDataState.filter((sown) =>
     sown.cultivo.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
     setSownDataState(sownData);
+    checkSession()
   }, []);
 
   return (

@@ -1,6 +1,5 @@
 import Sidebar from '../components/layouts/Sidebar';
 import useAuthStore from '../store/useAuthStore';
-import { useEffect } from 'react';
 
 const DashboardPage = () => {
   const { user } = useAuthStore();
