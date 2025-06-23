@@ -21,6 +21,9 @@ const Sidebar = () => {
             <Link className={currentPath.startsWith('/crops') ? 'menu-item-active' : 'menu-item'} to="/crops">
                 <SidebarMenuItem provider="Cultivos" />
             </Link>
+            <Link className={currentPath === '/ai-chat' ? 'menu-item-active' : 'menu-item'} to="/ai-chat">
+                <SidebarMenuItem provider="AI Chat" />
+            </Link>        
             <Link className={currentPath === '/calendar' ? 'menu-item-active' : 'menu-item'} to="/calendar">
                 <SidebarMenuItem provider="Calendario" />
             </Link>

@@ -243,3 +243,7 @@
 .background-tertiary {
     background-color: var(--third-color);
 }
+
+.no-border{
+    border: none;
+}

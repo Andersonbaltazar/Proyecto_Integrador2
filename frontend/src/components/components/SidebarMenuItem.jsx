@@ -5,6 +5,7 @@ const iconos = {
   Cultivos: <ion-icon name="reader"></ion-icon>,
   Calendario: <ion-icon name="calendar"></ion-icon>,
   Configuración: <ion-icon name="settings-sharp"></ion-icon>,
+  "AI Chat": <ion-icon name="chatbubbles"></ion-icon>,
   "Cerrar Sesión": <ion-icon name="log-out-outline"></ion-icon>,
 };
 
