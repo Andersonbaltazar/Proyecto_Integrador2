@@ -1,4 +1,3 @@
-import React from "react";
 import AuthProviderButton from "../components/widgets/AuthProviderButton";
 import AuthFooter from "../components/layouts/AuthFooter";
 import HeroImage from "../components/modules/HeroImage";
@@ -15,7 +14,7 @@ const LoginPage = () => {
             </p>
         </header>
         <section className="list-auth-buttons gap-2 d-flex flex-column align-center">
-          <AuthProviderButton provider="Google" url="http://localhost:8080/oauth2/authorization/google" />
+          <AuthProviderButton provider="Google" />
         </section>
         <section className="info-text-auth-layout">
             <p className="paragraph-auth-layout text-center">

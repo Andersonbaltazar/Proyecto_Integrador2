@@ -6,13 +6,13 @@ import CropsPage from "./pages/CropsPage";
 import DetailPage from "./pages/DetailPage";
 import sownData from "./data/sown.data";
 import AiChatPage from "./pages/AiChatPage";
+import ProtectedRoute from "./components/components/ProtectedRoute";
 import "./css/index.css";
+import CallbackPage from "./pages/CallbackPage";
 
 function App() {
   const [sownDataState, setSownDataState] = useState([]);
-
   const [searchTerm, setSearchTerm] = useState("");
-
   const filteredSown = sownDataState.filter((sown) =>
     sown.cultivo.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -26,13 +26,39 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/home" element={<DashboardPage />} />
+        <Route path="/callback" element={<CallbackPage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/crops"
-          element={<CropsPage data={filteredSown} onSearch={setSearchTerm} />}
+          element={
+            <ProtectedRoute>
+              <CropsPage data={filteredSown} onSearch={setSearchTerm} />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/crops/:id" element={<DetailPage />} />
-        <Route path="/ai-chat" element={<AiChatPage />} />
+        <Route
+          path="/crops/:id"
+          element={
+            <ProtectedRoute>
+              <DetailPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/ai-chat"
+          element={
+            <ProtectedRoute>
+              <AiChatPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

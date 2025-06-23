@@ -16,16 +16,23 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors().and()
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF solo si usas cookies sin token
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/logout-success").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/logout").permitAll()  // <-- agregar esta línea
+                        .requestMatchers(HttpMethod.POST, "/logout").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2Login(withDefaults())
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/")
+                .oauth2Login(oauth2 ->
+                        oauth2
+                                .defaultSuccessUrl("http://localhost:5173/callback", true) // 👈 Redirige al frontend después de login
                 )
-                .csrf(withDefaults()); // Añade esta línea para habilitar CSRF
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // <-- ruta para cerrar sesión
+                        .logoutSuccessHandler((request, response, auth) -> {
+                            response.setStatus(200); // <-- evita redirecciones y permite control desde el frontend
+                        })
+                );
+
         return http.build();
     }
 }
