@@ -4,27 +4,41 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import CropsPage from "./pages/CropsPage";
 import DetailPage from "./pages/DetailPage";
-import sownData from "./data/sown.data";
 import AiChatPage from "./pages/AiChatPage";
-import ProtectedRoute from "./components/components/ProtectedRoute";
-import "./css/index.css";
 import CallbackPage from "./pages/CallbackPage";
 import useAuthStore from "./store/useAuthStore";
 import SettingsPage from "./pages/SettingsPage";
+import ProtectedRoute from "./components/components/ProtectedRoute";
+import "./css/index.css";
+import useCultivoStore from "./store/useCultivoStore";
 
 function App() {
-  const [sownDataState, setSownDataState] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const checkSession = useAuthStore((state) => state.checkSession);
-  
-  const filteredSown = sownDataState.filter((sown) =>
-    sown.cultivo.toLowerCase().includes(searchTerm.toLowerCase())
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const fetchCultivos = useCultivoStore((state) => state.fetchCultivos);
+  const cultivos = useCultivoStore((state) => state.cultivos);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredSown = cultivos.filter((c) =>
+    c.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
-    setSownDataState(sownData);
-    checkSession()
-  }, []);
+    if (location.pathname !== "/login" && location.pathname !== "/callback") {
+      checkSession();
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchCultivos();
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    console.log("Cultivos actualizados:", cultivos);
+  }, [cultivos]);
 
   return (
     <BrowserRouter>
