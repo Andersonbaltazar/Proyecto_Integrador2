@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AgriApp</string>
+    <string name="sign_in_with_google">Iniciar sesión con Google</string>
+    <string name="welcome">Bienvenido a AgriApp</string>
+    <string name="dashboard">Panel Principal</string>
+    <string name="logout">Cerrar Sesión</string>
+
+    <!-- Reemplaza con tu Web Client ID de Google Cloud Console -->
+    <string name="web_client_id">726395389632-ffq0l5gfp6ugitfptf36ljaea1939l9f.apps.googleusercontent.com</string>
+</resources>

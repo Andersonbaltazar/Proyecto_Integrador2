@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "144131669092",
+    "project_id": "agromobile-1427b",
+    "storage_bucket": "agromobile-1427b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144131669092:android:997ad9fe3fbea1d6ba7371",
+        "android_client_info": {
+          "package_name": "com.gonzales.agromobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144131669092-daqf0qlj6v54kka8bq8061u29nffgl1f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gonzales.agromobile",
+            "certificate_hash": "5beb598daef1e07e994383a7844ac83884d96d49"
+          }
+        },
+        {
+          "client_id": "144131669092-cid79oc9pmnfkrdgd86s1qa2fvoif8ms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7VyXuHtz3hrfrdMNEx5GV4kotmvJlrpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144131669092-cid79oc9pmnfkrdgd86s1qa2fvoif8ms.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
