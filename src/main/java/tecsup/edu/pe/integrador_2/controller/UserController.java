@@ -19,8 +19,12 @@ public class UserController {
         return Map.of(
                 "authenticated", true,
                 "name", principal.getAttribute("name"),
+                "first_name", principal.getAttribute("given_name"),
+                "last_name", principal.getAttribute("family_name"),
                 "email", principal.getAttribute("email"),
                 "picture", principal.getAttribute("picture")
         );
     }
+
+
 }

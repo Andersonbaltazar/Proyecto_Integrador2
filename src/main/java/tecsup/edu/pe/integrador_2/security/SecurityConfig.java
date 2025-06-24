@@ -22,9 +22,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(mobileOAuth2TokenFilter, UsernamePasswordAuthenticationFilter.class)
-                .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/api/user", true)
+                .oauth2Login(oauth2 ->
+                        oauth2
+                                .defaultSuccessUrl("http://localhost:5173/callback", true) // 👈 Redirige al frontend después de login
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
