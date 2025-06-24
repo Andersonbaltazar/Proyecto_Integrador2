@@ -14,6 +14,7 @@ import tecsup.edu.pe.integrador_2.repository.UsuarioRepository;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +27,24 @@ public class CultivoApiController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private TipoTerrenoRepository tipoTerrenoRepository;
+
+    @GetMapping
+    public ResponseEntity<?> obtenerCultivosUsuario(@AuthenticationPrincipal OAuth2User principal) {
+        if (principal == null) {
+            return ResponseEntity.status(401).body("No autorizado: sesión requerida.");
+        }
+
+        String email = (String) principal.getAttribute("email");
+        System.out.println("EMAIL DEL USUARIO: " + email); // <- Agrega esto para depurar
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario == null) {
+            return ResponseEntity.status(404).body("Usuario no encontrado.");
+        }
+
+        List<Cultivo> cultivos = cultivoRepository.findByUsuario(usuario);
+        return ResponseEntity.ok(cultivos);
+    }
 
     @PostMapping("/guardar")
     public ResponseEntity<?> guardarCultivo(

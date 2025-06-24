@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,6 +44,7 @@ public class Usuario {
     private LocalDateTime ultimoLogin;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("usuario")
     private List<Cultivo> cultivos;
 
     // Getters y setters

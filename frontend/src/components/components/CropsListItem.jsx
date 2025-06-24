@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 
 const CropsListItem = ({ item, customClass }) => {
 
-  const { nombre_sembrio, cultivo, fecha_sembrio } = item;
+  const { nombre, tipoTerreno, fechaSiembra } = item;
 
   return (
     <button className={`button ${customClass} d-flex flex-column gap-2 justify-center`}>
-      <h2 className="title-progress-card text-center">{nombre_sembrio}</h2>
-      <p className="paragraph-progress-card text-center">{cultivo}</p>
-      <p className="paragraph-progress-card text-center">{fecha_sembrio}</p>
+      <h2 className="title-progress-card text-center">{nombre}</h2>
+      <p className="paragraph-progress-card text-center">{tipoTerreno.nombre}</p>
+      <p className="paragraph-progress-card text-center">{fechaSiembra}</p>
     </button>
   );
 };

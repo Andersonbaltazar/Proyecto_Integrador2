@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -16,12 +17,13 @@ public class Cultivo {
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_terreno_id")
-    private TipoTerreno tipoTerreno;
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties("cultivos")
+    private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "tipo_terreno_id")
+    private TipoTerreno tipoTerreno;
 
     // Constructores (vacío y con argumentos)
     public Cultivo() {
