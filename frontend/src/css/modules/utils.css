@@ -29,3 +29,6 @@
 .fs-6{
     font-size: calc(var(--size) * 6);
 }
+.fw-500{
+    font-weight: 500;
+}

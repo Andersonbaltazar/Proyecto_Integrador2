@@ -1,32 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/useAuthStore";
 
-function LogoutButton({ setIsAuthenticated }) {
-  const handleLogout = () => {
-    fetch("http://localhost:8080/logout", {
-      method: "POST",
-      credentials: "include",
-    })
-      .then((res) => {
-        if (res.ok) {
-          setIsAuthenticated(false);
-          window.location.href = "/login";
-        } else {
-          console.error("Error al cerrar sesión, status:", res.status);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al cerrar sesión:", error);
-      });
+function LogoutButton() {
+  const { logout } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
   };
 
   return (
-    <button className="menu-item d-flex gap-2 align-center" onClick={handleLogout}>
-      <span className="icon d-flex align-center">
+    <button
+      className="menu-item d-flex gap-2 align-center"
+      onClick={handleLogout}
+    >
+      <span className="icon d-flex align-center fs-5">
         <ion-icon name="log-out-outline"></ion-icon>
       </span>
-      <span className="text-menu-item">Cerrar Sesión</span>
+      <span className="text-menu-item fw-500">Cerrar Sesión</span>
     </button>
   );
 }
 
-export default LogoutButton
+export default LogoutButton;

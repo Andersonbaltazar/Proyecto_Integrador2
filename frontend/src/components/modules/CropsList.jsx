@@ -18,7 +18,7 @@ const CropsList = ({ data }) => {
           <h3 className='title-progress-card-empty'>No hay sembríos registrados</h3>
           <p className='paragraph-progress-card-empty'>Agrega tu primer sembrío para comenzar a ver su progreso 📈</p>
           <div className="button-container d-flex justify-center align-center">
-            <Button label="Agregar Sembrío" onClick={toggleModal} className='add-button' />
+            <Button label="Agregar Sembrío" onClick={toggleModal} className='button add-button' />
           </div>
         </div>
       ) : (

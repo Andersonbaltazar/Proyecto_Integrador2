@@ -1,24 +1,26 @@
-import React from 'react';
 import googleLogo from '../../assets/logos/google.webp';
-import facebookLogo from '../../assets/logos/facebook.png';
-import xLogo from '../../assets/logos/x.png';
-import microsoftLogo from '../../assets/logos/microsoft.png';
+import useAuthStore from '../../store/useAuthStore';
+import Button from './Button';
 
 const logos = {
   Google: googleLogo,
-  Facebook: facebookLogo,
-  X: xLogo,
-  Microsoft: microsoftLogo,
 };
 
-const AuthProviderButton = ({ provider, url }) => {
+const AuthProviderButton = ({ provider }) => {
+  const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
   const logo = logos[provider];
 
+    const handleLogin = () => {
+    if (provider === "Google") {
+      loginWithGoogle();
+    }
+  };
+
   return (
-    <button className="d-flex gap-5 auth-button align-center">
+    <Button className="d-flex gap-5 auth-button align-center p-5" onClick={handleLogin}>
       <img className="img-logo-auth-button" src={logo} alt={`${provider} logo`} />
-      <a className="text-auth-button" href={url}>Continuar con {provider}</a>
-    </button>
+      <p className='fw-500 fs-4'>Continuar con {provider}</p>
+    </Button>
   );
 };
 
