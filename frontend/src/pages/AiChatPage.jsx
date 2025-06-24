@@ -3,9 +3,9 @@ import Sidebar from "../components/layouts/Sidebar";
 
 const AiChatPage = () => {
   return (
-    <main className="dashboard-layout d-flex">
+    <main className="page-layout d-flex">
       <Sidebar />
-      <div className="dashboard-content-container d-flex">
+      <div className="page-content-container d-flex">
         <article className="d-flex flex-column w-full h-full">
           <header className="header-dashboard-container d-flex flex-column">
             <h1 className="title-header-dashboard">Asistente AI</h1>
