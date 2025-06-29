@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cultivos")
@@ -83,4 +84,36 @@ public class CultivoApiController {
             return ResponseEntity.status(400).body("Error al procesar los datos: " + e.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarCultivo(
+            @PathVariable Long id,
+            @AuthenticationPrincipal OAuth2User principal) {
+
+        if (principal == null) {
+            return ResponseEntity.status(401).body("No autorizado: sesión requerida.");
+        }
+
+        String googleId = (String) principal.getAttributes().get("sub");
+        Usuario usuario = usuarioRepository.findByGoogleId(googleId);
+        if (usuario == null) {
+            return ResponseEntity.status(404).body("Usuario no encontrado");
+        }
+
+        Optional<Cultivo> cultivoOpt = cultivoRepository.findById(id);
+        if (cultivoOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Cultivo no encontrado");
+        }
+
+        Cultivo cultivo = cultivoOpt.get();
+
+        // Asegurarse que el cultivo pertenece al usuario
+        if (!cultivo.getUsuario().getId().equals(usuario.getId())) {
+            return ResponseEntity.status(403).body("No tienes permiso para eliminar este cultivo");
+        }
+
+        cultivoRepository.delete(cultivo);
+        return ResponseEntity.ok("Cultivo eliminado correctamente");
+    }
+
 }
