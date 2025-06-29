@@ -24,9 +24,6 @@ const Sidebar = () => {
             <Link className={currentPath === '/ai-chat' ? 'menu-item-active' : 'menu-item'} to="/ai-chat">
                 <SidebarMenuItem provider="AI Chat" />
             </Link>        
-            <Link className={currentPath === '/calendar' ? 'menu-item-active' : 'menu-item'} to="/calendar">
-                <SidebarMenuItem provider="Calendario" />
-            </Link>
             <Link className={currentPath === '/settings' ? 'menu-item-active' : 'menu-item'} to="/settings">
                 <SidebarMenuItem provider="Configuración" />
             </Link>           

@@ -21,7 +21,7 @@ public class Cultivo {
     @JsonIgnoreProperties("cultivos")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_terreno_id")
     private TipoTerreno tipoTerreno;
 

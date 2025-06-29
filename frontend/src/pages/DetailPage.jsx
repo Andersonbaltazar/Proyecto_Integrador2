@@ -25,7 +25,7 @@ const DetailPage = () => {
     );
   }
 
-  const { nombre_sembrio, cultivo, fecha_sembrio, descripcion } = item;
+  const { nombre, fechaSiembra, descripcion } = item;
 
   const showGraph = () => {
     switch (Graph) {
@@ -57,18 +57,17 @@ const DetailPage = () => {
                 <div className="d-flex flex-column h-full w-35">
                   <div className="d-flex flex-column w-full gap-2">
                     <div className="w-full background-secondary p-4 br-2">
-                      <h2>{nombre_sembrio}</h2>
                       <p className="card-item">
                         <span className="card-label">
                           <strong>Cultivo: </strong>
                         </span>
-                        <span className="card-value">{cultivo}</span>
+                        <span className="card-value">{nombre}</span>
                       </p>
                       <p className="card-item">
                         <span className="card-label">
                           <strong>Fecha de la Siembra: </strong>
                         </span>
-                        <span className="card-value">{fecha_sembrio}</span>
+                        <span className="card-value">{fechaSiembra}</span>
                       </p>
                       <p className="card-description text-justify">
                         {descripcion}

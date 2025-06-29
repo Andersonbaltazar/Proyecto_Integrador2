@@ -78,11 +78,7 @@ public class CultivoApiController {
             Cultivo cultivo = new Cultivo(nombre, fechaSiembra, descripcion, tipoTerreno, usuario);
             cultivoRepository.save(cultivo);
 
-            Map<String, Object> resp = new HashMap<>();
-            resp.put("message", "Cultivo guardado exitosamente");
-            resp.put("cultivoId", cultivo.getId());
-            return ResponseEntity.ok(resp);
-
+            return ResponseEntity.ok(cultivo);
         } catch (Exception e) {
             return ResponseEntity.status(400).body("Error al procesar los datos: " + e.getMessage());
         }

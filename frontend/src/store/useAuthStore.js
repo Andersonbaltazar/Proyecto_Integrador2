@@ -70,6 +70,24 @@ const useAuthStore = create(
           });
         }
       },
+      updateUser: async (updatedFields) => {
+        try {
+          const response = await axios.put(
+            "http://localhost:8080/api/user",
+            updatedFields,
+            { withCredentials: true }
+          );
+
+          const user = get().user;
+          const newUser = { ...user, ...updatedFields };
+
+          set({ user: newUser });
+          return { success: true, message: response.data };
+        } catch (error) {
+          console.error("Error al actualizar el usuario:", error);
+          return { success: false, message: "Error al actualizar el usuario" };
+        }
+      },
     }),
     {
       name: "auth-storage",

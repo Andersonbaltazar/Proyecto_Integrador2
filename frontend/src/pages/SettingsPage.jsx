@@ -5,6 +5,7 @@ import useAuthStore from "../store/useAuthStore";
 
 const SettingsPage = () => {
   const { user } = useAuthStore();
+  const { updateUser } = useAuthStore();
   const fileInputRef = useRef();
   const [formData, setFormData] = useState({
     name: "",
@@ -34,9 +35,22 @@ const SettingsPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos a guardar:", formData);
+
+    const { first_name, last_name, picture } = formData;
+
+    const result = await updateUser({
+      first_name,
+      last_name,
+      picture,
+    });
+
+    if (result.success) {
+      alert("Datos actualizados correctamente.");
+    } else {
+      alert("Error al actualizar los datos.");
+    }
   };
 
   return (

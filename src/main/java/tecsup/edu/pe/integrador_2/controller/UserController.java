@@ -1,7 +1,10 @@
 package tecsup.edu.pe.integrador_2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -55,5 +58,37 @@ public class UserController {
                 "email", email,
                 "picture", foto
         );
+    }
+
+    @PutMapping("/api/user")
+    public ResponseEntity<?> actualizarUsuario(
+            @AuthenticationPrincipal OAuth2User principal,
+            @RequestBody Map<String, Object> payload) {
+
+        if (principal == null) {
+            return ResponseEntity.status(401).body("No autorizado.");
+        }
+
+        String googleId = principal.getAttribute("sub");
+        Usuario usuario = usuarioRepository.findByGoogleId(googleId);
+        if (usuario == null) {
+            return ResponseEntity.status(404).body("Usuario no encontrado.");
+        }
+
+        if (payload.containsKey("first_name")) {
+            usuario.setNombrePila((String) payload.get("first_name"));
+        }
+
+        if (payload.containsKey("last_name")) {
+            usuario.setApellido((String) payload.get("last_name"));
+        }
+
+        if (payload.containsKey("picture")) {
+            usuario.setFotoPerfilUrl((String) payload.get("picture"));
+        }
+
+        usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok("Usuario actualizado exitosamente.");
     }
 }
