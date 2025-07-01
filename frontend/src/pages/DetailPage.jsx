@@ -6,6 +6,7 @@ import LineChart from "../components/modules/LinearChart";
 import Button from "../components/widgets/Button";
 import useSownStore from "../store/useSownStore";
 import CultivoModal from "../components/CultivoModal";
+import Swal from "sweetalert2";
 
 const DetailPage = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const DetailPage = () => {
   const handleEditCrop = () => {
     toggleModal();
   };
+
   // Cierra el dropdown si haces clic fuera
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -63,8 +65,15 @@ const DetailPage = () => {
     );
   }
 
-  const { nombre, cultivo, fechaSiembra, descripcion, localidad, estado, tipoTerreno } =
-    item;
+  const {
+    nombre,
+    cultivo,
+    fechaSiembra,
+    descripcion,
+    localidad,
+    estado,
+    tipoTerreno,
+  } = item;
 
   const graphOptions = [
     { id: "Timeline", label: "Línea de Progreso", icon: "time-outline" },
@@ -107,14 +116,24 @@ const DetailPage = () => {
   const handleDelete = async () => {
     setActionsDropdownOpen(false);
 
-    if (window.confirm("¿Estás seguro de que quieres eliminar este sembrío?")) {
+    const result = await Swal.fire({
+      title: "¿Estas seguro de eliminar el sembrío?",
+      text: "Esta acción no se puede revertir",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed){
       try {
-        await deleteSown(item.id);
-        alert("Sembrío eliminado correctamente");
-        navigate("/crops");
-      } catch (error) {
-        console.error("Error al eliminar:", error);
-        alert("Hubo un error al eliminar el sembrío.");
+        await deleteSown(item.id)
+        Swal.fire("¡Eliminado!", "El cultivo ha sido eliminado correctamente.", "success");
+        navigate("/crops")
+      } catch {
+        Swal.fire("Error", "No se pudo eliminar el cultivo.", "error");
       }
     }
   };
@@ -195,7 +214,7 @@ const DetailPage = () => {
                         </span>
                       </div>
                     </div>
-                    
+
                     <div className="progress-card-details">
                       <div className="progress-card-detail">
                         <ion-icon name="location"></ion-icon>

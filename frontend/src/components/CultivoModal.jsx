@@ -6,6 +6,7 @@ import FormButtons from "./widgets/FormButtons";
 import SelectInput from "./widgets/SelectInput";
 import TextAreaInput from "./widgets/TextAreaInput";
 import useSownStore from "../store/useSownStore";
+import Swal from "sweetalert2"
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
@@ -41,25 +42,48 @@ const CultivoModal = ({ show, toggle, initialData = null }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let res;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  let res;
 
+  try {
     if (initialData?.id) {
       res = await updateSown(initialData.id, form);
+      Swal.fire({
+        icon: "success",
+        title: "Sembrío actualizado",
+        text: "Los datos se actualizaron correctamente",
+        timer: 2000,
+        showConfirmButton: false,
+      });
       navigate("/crops");
     } else {
       res = await createSown(form);
+      if (res?.ok || res?.id) {
+        Swal.fire({
+          icon: "success",
+          title: "Sembrío creado",
+          text: "El sembrío se creó correctamente",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
     }
 
     if (res && (res.ok || res.id)) {
-      alert(initialData ? "Sembrío actualizado correctamente" : "Sembrío creado correctamente");
       setForm(emptyForm);
-      toggle();
+      toggle(); // Cierra el modal
     } else {
-      alert("Error: No se pudo guardar el cultivo");
+      throw new Error("No se pudo guardar el cultivo");
     }
-  };
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: error.message || "Ocurrió un error al guardar",
+    });
+  }
+};
 
   return (
     <>
