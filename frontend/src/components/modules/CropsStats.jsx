@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 const CropsStats = ({ data, searchTerm }) => {
   const totalCrops = data.length;
-  const activeCrops = data.filter(crop => crop.estado === 'activo').length;
-  const completedCrops = data.filter(crop => crop.estado === 'completado').length;
+  const activeCrops = data.filter(crop => crop.estado === 'Activo').length;
+  const completedCrops = data.filter(crop => crop.estado === 'Completado').length;
   const filteredCrops = data.filter(crop => 
     crop.nombre?.toLowerCase().includes(searchTerm?.toLowerCase() || '')
   ).length;

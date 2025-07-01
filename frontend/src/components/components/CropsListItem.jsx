@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 const CropsListItem = ({ item, customClass }) => {
   if (!item) return null;
 
-  const { nombre, cultivo, fechaSiembra,  estado, localidad } = item;
+  const { nombre, cultivo, fechaSiembra,  estado, localidad, tipoTerreno } = item;
 
   
   // Determinar el estado del cultivo
   const getStatusClass = () => {
     if (estado === 'completado') return 'completed';
-    if (estado === 'activo') return 'active';
+    if (estado === 'Activo') return 'active';
     return 'pending';
   };
 
   const getStatusText = () => {
     if (estado === 'completado') return 'Completado';
-    if (estado === 'activo') return 'Activo';
+    if (estado === 'Activo') return 'Activo';
     return 'Pendiente';
   };
 
@@ -65,6 +65,10 @@ const CropsListItem = ({ item, customClass }) => {
         <div className="progress-card-detail">
           <ion-icon name="nutrition"></ion-icon>
           <span>{cultivo}</span>
+        </div>
+        <div className="progress-card-detail">
+          <ion-icon name="leaf"></ion-icon>
+          <span>{tipoTerreno.nombre || 'Sin tipo de terreno'}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="location"></ion-icon>

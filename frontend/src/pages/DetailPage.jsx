@@ -5,6 +5,7 @@ import Timeline from "../components/modules/Timeline";
 import LineChart from "../components/modules/LinearChart";
 import Button from "../components/widgets/Button";
 import useSownStore from "../store/useSownStore";
+import CultivoModal from "../components/CultivoModal";
 
 const DetailPage = () => {
   const location = useLocation();
@@ -17,6 +18,13 @@ const DetailPage = () => {
   const actionsDropdownRef = useRef(null);
   const { item } = location.state || {};
 
+  // Modal Configuration
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal((prev) => !prev);
+
+  const handleEditCrop = () => {
+    toggleModal();
+  };
   // Cierra el dropdown si haces clic fuera
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -55,7 +63,7 @@ const DetailPage = () => {
     );
   }
 
-  const { nombre, cultivo, fechaSiembra, descripcion, localidad, estado } =
+  const { nombre, cultivo, fechaSiembra, descripcion, localidad, estado, tipoTerreno } =
     item;
 
   const graphOptions = [
@@ -96,18 +104,12 @@ const DetailPage = () => {
     setDropdownOpen(false);
   };
 
-  const handleEdit = () => {
-    setActionsDropdownOpen(false);
-    // Aquí puedes navegar a una página de edición o abrir un modal
-    console.log("Editar sembrío:", item);
-  };
-
   const handleDelete = async () => {
     setActionsDropdownOpen(false);
 
     if (window.confirm("¿Estás seguro de que quieres eliminar este sembrío?")) {
       try {
-        await deleteSown(item.id); // Elimina desde el store
+        await deleteSown(item.id);
         alert("Sembrío eliminado correctamente");
         navigate("/crops");
       } catch (error) {
@@ -145,7 +147,7 @@ const DetailPage = () => {
 
                   {actionsDropdownOpen && (
                     <div className="dropdown-menu actions-dropdown-menu">
-                      <div className="dropdown-item" onClick={handleEdit}>
+                      <div className="dropdown-item" onClick={handleEditCrop}>
                         <ion-icon name="create-outline"></ion-icon>
                         Editar Sembrío
                       </div>
@@ -185,6 +187,15 @@ const DetailPage = () => {
                       </div>
                     </div>
 
+                    <div className="progress-card-details">
+                      <div className="progress-card-detail">
+                        <ion-icon name="leaf"></ion-icon>
+                        <span>
+                          <strong>Tipo de Terreno:</strong> {tipoTerreno.nombre}
+                        </span>
+                      </div>
+                    </div>
+                    
                     <div className="progress-card-details">
                       <div className="progress-card-detail">
                         <ion-icon name="location"></ion-icon>
@@ -302,6 +313,7 @@ const DetailPage = () => {
           </section>
         </article>
       </div>
+      <CultivoModal show={showModal} toggle={toggleModal} initialData={item} />
     </main>
   );
 };
