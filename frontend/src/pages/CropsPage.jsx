@@ -44,7 +44,6 @@ const CropsPage = () => {
 
   const handleFilterClick = () => {
     toggleFilter();
-    // Aquí puedes agregar lógica adicional para el filtro
   };
 
   return (

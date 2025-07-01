@@ -23,7 +23,10 @@ const DetailPage = () => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setDropdownOpen(false);
       }
-      if (actionsDropdownRef.current && !actionsDropdownRef.current.contains(e.target)) {
+      if (
+        actionsDropdownRef.current &&
+        !actionsDropdownRef.current.contains(e.target)
+      ) {
         setActionsDropdownOpen(false);
       }
     };
@@ -52,7 +55,8 @@ const DetailPage = () => {
     );
   }
 
-  const { nombre, fechaSiembra, descripcion } = item;
+  const { nombre, cultivo, fechaSiembra, descripcion, localidad, estado } =
+    item;
 
   const graphOptions = [
     { id: "Timeline", label: "Línea de Progreso", icon: "time-outline" },
@@ -100,7 +104,7 @@ const DetailPage = () => {
 
   const handleDelete = async () => {
     setActionsDropdownOpen(false);
-  
+
     if (window.confirm("¿Estás seguro de que quieres eliminar este sembrío?")) {
       try {
         await deleteSown(item.id); // Elimina desde el store
@@ -129,7 +133,7 @@ const DetailPage = () => {
                   <ion-icon name="arrow-back-outline"></ion-icon>
                   Volver
                 </Link>
-                
+
                 {/* Dropdown de acciones */}
                 <div className="dropdown" ref={actionsDropdownRef}>
                   <Button
@@ -140,11 +144,8 @@ const DetailPage = () => {
                   </Button>
 
                   {actionsDropdownOpen && (
-                    <div className="dropdown-menu">
-                      <div
-                        className="dropdown-item"
-                        onClick={handleEdit}
-                      >
+                    <div className="dropdown-menu actions-dropdown-menu">
+                      <div className="dropdown-item" onClick={handleEdit}>
                         <ion-icon name="create-outline"></ion-icon>
                         Editar Sembrío
                       </div>
@@ -177,13 +178,39 @@ const DetailPage = () => {
 
                     <div className="progress-card-details">
                       <div className="progress-card-detail">
-                        <ion-icon name="calendar-outline"></ion-icon>
+                        <ion-icon name="nutrition"></ion-icon>
+                        <span>
+                          <strong>Cultivo:</strong> {cultivo}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="progress-card-details">
+                      <div className="progress-card-detail">
+                        <ion-icon name="location"></ion-icon>
+                        <span>
+                          <strong>Localidad:</strong> {localidad}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="progress-card-details">
+                      <div className="progress-card-detail">
+                        <ion-icon name="calendar"></ion-icon>
                         <span>
                           <strong>Fecha de Siembra:</strong> {fechaSiembra}
                         </span>
                       </div>
                     </div>
 
+                    <div className="progress-card-details">
+                      <div className="progress-card-detail">
+                        <ion-icon name="trending-up"></ion-icon>
+                        <span>
+                          <strong>Estado:</strong> {estado}
+                        </span>
+                      </div>
+                    </div>
                     <div className="mt-3">
                       <h4 className="enhanced-stat-label">Descripción</h4>
                       <p className="text-justify">{descripcion}</p>

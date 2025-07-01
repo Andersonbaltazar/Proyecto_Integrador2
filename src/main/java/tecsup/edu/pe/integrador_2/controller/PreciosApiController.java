@@ -65,7 +65,7 @@ public class PreciosApiController {
             // Construir contexto para la IA
             String contexto = String.format(
                     "Cultivo de %s sembrado el %s, con fecha de cosecha estimada el %s. Tipo de terreno: %s. %s",
-                    cultivo.getNombre(),
+                    cultivo.getCultivo(),
                     cultivo.getFechaSiembra(),
                     fechaCosecha,
                     cultivo.getTipoTerreno() != null ? cultivo.getTipoTerreno().getNombre() : "no especificado",

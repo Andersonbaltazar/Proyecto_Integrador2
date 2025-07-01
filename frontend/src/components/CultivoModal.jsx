@@ -13,8 +13,10 @@ const CultivoModal = ({ show, toggle }) => {
 
   const [form, setForm] = useState({
     nombre: "",
+    cultivo: "",
     descripcion: "",
     tipoTerrenoId: "",
+    localidad: "",
     fechaSiembra: "",
   });
 
@@ -34,6 +36,7 @@ const CultivoModal = ({ show, toggle }) => {
         nombre: "",
         descripcion: "",
         tipoTerrenoId: "",
+        localidad: "",
         fechaSiembra: "",
       });
       toggle(); // cerrar el modal
@@ -53,7 +56,14 @@ const CultivoModal = ({ show, toggle }) => {
           >
             <FormLabel
               name="nombre"
-              label="Nombre del cultivo"
+              label="Nombre del sembrio"
+              type="text"
+              placeholder="ej. Sembrio A"
+              onChange={handleChange}
+            />
+            <FormLabel
+              name="cultivo"
+              label="Nombre de cultivo"
               type="text"
               placeholder="ej. Zanahoria"
               onChange={handleChange}
@@ -75,6 +85,13 @@ const CultivoModal = ({ show, toggle }) => {
                 { value: "2", label: "Arenoso" },
                 { value: "3", label: "Limoso" },
               ]}
+              onChange={handleChange}
+            />
+            <FormLabel
+              name="localidad"
+              label="Localidad"
+              type="text"
+              placeholder="ej. Lima"
               onChange={handleChange}
             />
             <FormLabel

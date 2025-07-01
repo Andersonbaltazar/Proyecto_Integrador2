@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 const CropsListItem = ({ item, customClass }) => {
   if (!item) return null;
 
-  const { nombre, tipoTerreno, fechaSiembra, estado, progreso } = item;
+  const { nombre, cultivo, fechaSiembra,  estado, localidad } = item;
 
-  // Calcular el progreso (si no existe, usar un valor por defecto)
-  const progressPercentage = progreso || Math.floor(Math.random() * 100);
   
   // Determinar el estado del cultivo
   const getStatusClass = () => {
@@ -65,8 +63,12 @@ const CropsListItem = ({ item, customClass }) => {
       {/* Detalles del cultivo */}
       <div className="progress-card-details">
         <div className="progress-card-detail">
+          <ion-icon name="nutrition"></ion-icon>
+          <span>{cultivo}</span>
+        </div>
+        <div className="progress-card-detail">
           <ion-icon name="location"></ion-icon>
-          <span>{tipoTerreno?.nombre || 'Sin tipo de terreno'}</span>
+          <span>{localidad || 'Sin localidad de terreno'}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="calendar"></ion-icon>
@@ -74,20 +76,7 @@ const CropsListItem = ({ item, customClass }) => {
         </div>
         <div className="progress-card-detail">
           <ion-icon name="trending-up"></ion-icon>
-          <span>Progreso del cultivo</span>
-        </div>
-      </div>
-
-      {/* Barra de progreso */}
-      <div className="progress-card-progress">
-        <div className="progress-bar-container">
-          <div 
-            className="progress-bar-fill"
-            style={{ width: `${progressPercentage}%` }}
-          ></div>
-        </div>
-        <div className="progress-percentage">
-          {progressPercentage}% Completado
+          <span>Progreso del cultivo: {estado}</span>
         </div>
       </div>
     </div>

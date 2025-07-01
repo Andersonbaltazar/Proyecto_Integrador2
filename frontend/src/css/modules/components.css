@@ -433,7 +433,14 @@
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   margin-top: 8px;
   z-index: 9999;
-  transform: translateX(-80%);
+  transform: translateX(-20%);
+}
+
+.actions-dropdown-menu {
+  right: 0;
+  left: auto;
+  min-width: 180px;
+  transform: none;
 }
 
 .dropup-item, .dropdown-item {
