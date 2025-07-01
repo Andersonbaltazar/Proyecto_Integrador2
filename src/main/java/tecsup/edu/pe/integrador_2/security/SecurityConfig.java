@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,27 +12,32 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Autowired
     private MobileOAuth2TokenFilter mobileOAuth2TokenFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.disable())                .authorizeHttpRequests(auth -> auth
+                .cors() // ✅ Habilita CORS para que use lo definido en WebConfig
+                .and()
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/logout-success", "/api/mobile/auth").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(mobileOAuth2TokenFilter, UsernamePasswordAuthenticationFilter.class)
-                .oauth2Login(oauth2 ->
-                        oauth2
-                                .defaultSuccessUrl("http://localhost:5173/callback", true) // 👈 Redirige al frontend después de login
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl("http://localhost:5173/callback", true)
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/")
+                        .logoutUrl("/logout") // <-- asegúrate que sea POST
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                        })
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 )
-                .csrf(csrf -> csrf.disable());
+                .csrf(csrf -> csrf.disable()); // Opcional: desactiva CSRF si solo haces SPA + API
         return http.build();
     }
 }

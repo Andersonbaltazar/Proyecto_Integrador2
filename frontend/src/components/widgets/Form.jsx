@@ -1,19 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({ action = "#", children, customClass = "", onSumbit="" }) => {
+const Form = ({ children, customClass = "", onSubmit }) => {
   return (
-    <form className={`${customClass} form-container`} method="POST" action={action} onSubmit={onSumbit}>
+    <form className={`${customClass} form-container`} method="POST" onSubmit={onSubmit}>
       {children}
     </form>
   );
 };
 
 Form.propTypes = {
-  action: PropTypes.string,
   children: PropTypes.node,
   customClass: PropTypes.string,
-  onSumbit: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  onSubmit: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
 export default Form;

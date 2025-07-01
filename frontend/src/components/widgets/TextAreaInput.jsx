@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-const TextAreaInput = ({ label, name, placeholder = "", rows = 4, required = false }) => {
+const TextAreaInput = ({ label, name, placeholder = "", rows = 4, required = false, onChange, value }) => {
   return (
     <div className="form-group d-flex justify-between align-center">
       <label htmlFor={name} className="form-label text-left">{label}:</label>
-      <textarea id={name} name={name} className="form-input" placeholder={placeholder} rows={rows} required={required}></textarea>
+      <textarea id={name} name={name} className="form-input" placeholder={placeholder} rows={rows} required={required} onChange={onChange} value={value}></textarea>
     </div>
   );
 };

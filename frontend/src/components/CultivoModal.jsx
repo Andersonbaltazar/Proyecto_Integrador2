@@ -1,27 +1,144 @@
-import Form from './widgets/Form';
-import FormLabel from './widgets/FormLabel';
-import Modal from './widgets/Modal';
-import FormButtons from './widgets/FormButtons';
-import SelectInput from './widgets/SelectInput';
-import TextAreaInput from './widgets/TextAreaInput';
+import { useEffect, useState } from "react";
+import Form from "./widgets/Form";
+import FormLabel from "./widgets/FormLabel";
+import Modal from "./widgets/Modal";
+import FormButtons from "./widgets/FormButtons";
+import SelectInput from "./widgets/SelectInput";
+import TextAreaInput from "./widgets/TextAreaInput";
+import useSownStore from "../store/useSownStore";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const CultivoModal = ({show, toggle}) => {
+const emptyForm = {
+  nombre: "",
+  cultivo: "",
+  descripcion: "",
+  tipoTerreno: [],
+  localidad: "",
+  fechaSiembra: "",
+};
+const CultivoModal = ({ show, toggle, initialData = null }) => {
+  const createSown = useSownStore((state) => state.createSown);
+  const updateSown = useSownStore((state) => state.updateSown);
+
+  const [form, setForm] = useState(emptyForm);
+
+  const navigate = useNavigate();
+
+  // Cargar datos si se está editando
+  useEffect(() => {
+    if (initialData) {
+      setForm(initialData);
+    } else {
+      setForm(emptyForm);
+    }
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let res;
+
+    if (initialData?.id) {
+      res = await updateSown(initialData.id, form);
+      navigate("/crops");
+    } else {
+      res = await createSown(form);
+    }
+
+    if (res && (res.ok || res.id)) {
+      alert(initialData ? "Sembrío actualizado correctamente" : "Sembrío creado correctamente");
+      setForm(emptyForm);
+      toggle();
+    } else {
+      alert("Error: No se pudo guardar el cultivo");
+    }
+  };
+
   return (
     <>
       {show && (
-        <Modal title="Agregar Sembrío">
-            <Form action="" title="Cultivo" customClass="d-flex flex-column gap-5">
-                <FormLabel label="Nombre del Sembrío" type="text" placeholder="ej. Sembrío A" />
-                <FormLabel label="Nombre del cultivo" type="text" placeholder="ej. Zanahoria" />
-                <TextAreaInput label="Descripción" name="descripcion" placeholder="Describe brevemente el cultivo..." rows={5} required={true} />
-                <SelectInput label="Tipo de suelo" name="tipo_suelo" required={true} options={[{ value: 'arcilloso', label: 'Arcilloso' }, { value: 'arenoso', label: 'Arenoso' }, { value: 'limoso', label: 'Limoso' }]} />
-                <FormLabel label="Fecha de sembrío" type="date" placeholder="Selecciona una fecha" />
-                <FormButtons label="Agregar Sembrío" toggleModal={toggle} customclass="justify-center" />
-            </Form>
+        <Modal title={initialData ? "Editar Sembrío" : "Agregar Sembrío"}>
+          <Form
+            onSubmit={handleSubmit}
+            title="Cultivo"
+            customClass="d-flex flex-column gap-5"
+          >
+            <FormLabel
+              name="nombre"
+              label="Nombre del sembrío"
+              type="text"
+              placeholder="ej. Sembrío A"
+              value={form.nombre}
+              onChange={handleChange}
+            />
+            <FormLabel
+              name="cultivo"
+              label="Nombre del cultivo"
+              type="text"
+              placeholder="ej. Zanahoria"
+              value={form.cultivo}
+              onChange={handleChange}
+            />
+            <TextAreaInput
+              label="Descripción"
+              name="descripcion"
+              placeholder="Describe brevemente el cultivo..."
+              rows={5}
+              required={true}
+              value={form.descripcion}
+              onChange={handleChange}
+            />
+            <SelectInput
+              label="Tipo de suelo"
+              name="tipoTerrenoId"
+              required={true}
+              value={form.tipoTerreno.id}
+              options={[
+                { value: "1", label: "Arcilloso" },
+                { value: "2", label: "Arenoso" },
+                { value: "3", label: "Limoso" },
+              ]}
+              onChange={handleChange}
+            />
+            <FormLabel
+              name="localidad"
+              label="Localidad"
+              type="text"
+              placeholder="ej. Lima"
+              value={form.localidad}
+              onChange={handleChange}
+            />
+            <FormLabel
+              name="fechaSiembra"
+              label="Fecha de sembrío"
+              type="date"
+              placeholder="Selecciona una fecha"
+              value={form.fechaSiembra}
+              onChange={handleChange}
+            />
+            <FormButtons
+              label={initialData ? "Actualizar" : "Agregar Sembrío"}
+              toggleModal={toggle}
+              customclass="justify-center"
+            />
+          </Form>
         </Modal>
       )}
     </>
   );
+};
+
+CultivoModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  initialData: PropTypes.object,
 };
 
 export default CultivoModal;

@@ -59,7 +59,7 @@ public class SeguimientoCultivoApiController {
         String edadCultivo = meses > 0 ? meses + " meses" : dias + " días";
 
         // Construir contexto para IA
-        StringBuilder contextoCultivo = new StringBuilder("Cultivo de " + cultivo.getNombre());
+        StringBuilder contextoCultivo = new StringBuilder("Cultivo de " + cultivo.getCultivo());
         if (fechaSiembra != null) contextoCultivo.append(", sembrado el ").append(fechaSiembra);
         if (cultivo.getDescripcion() != null && !cultivo.getDescripcion().isEmpty())
             contextoCultivo.append(", descripción: ").append(cultivo.getDescripcion());

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "cultivos")
 public class Cultivo {
 
     @Id
@@ -12,36 +11,47 @@ public class Cultivo {
     private Long id;
 
     private String nombre;
+
+    private String cultivo;
+
     private LocalDate fechaSiembra;
+
     private String descripcion;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_terreno_id")
-    private TipoTerreno tipoTerreno;
+    private String localidad;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    // Constructores (vacío y con argumentos)
-    public Cultivo() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "tipo_terreno_id", nullable = false)
+    private TipoTerreno tipoTerreno;
 
-    public Cultivo(String nombre, LocalDate fechaSiembra, String descripcion, TipoTerreno tipoTerreno, Usuario usuario) {
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVO'")
+    private Estado estado = Estado.Activo;
+
+    // Constructor sin argumentos requerido por JPA
+    public Cultivo() {}
+
+    // Constructor con todos los parámetros
+    public Cultivo(String nombre, String cultivo, LocalDate fechaSiembra, String descripcion,
+                   String localidad, Usuario usuario, TipoTerreno tipoTerreno) {
         this.nombre = nombre;
+        this.cultivo = cultivo;
         this.fechaSiembra = fechaSiembra;
         this.descripcion = descripcion;
-        this.tipoTerreno = tipoTerreno;
+        this.localidad = localidad;
         this.usuario = usuario;
+        this.tipoTerreno = tipoTerreno;
+        this.estado = Estado.Activo;
     }
 
     // Getters y setters
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -50,6 +60,14 @@ public class Cultivo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCultivo() {
+        return cultivo;
+    }
+
+    public void setCultivo(String cultivo) {
+        this.cultivo = cultivo;
     }
 
     public LocalDate getFechaSiembra() {
@@ -68,12 +86,12 @@ public class Cultivo {
         this.descripcion = descripcion;
     }
 
-    public TipoTerreno getTipoTerreno() {
-        return tipoTerreno;
+    public String getLocalidad() {
+        return localidad;
     }
 
-    public void setTipoTerreno(TipoTerreno tipoTerreno) {
-        this.tipoTerreno = tipoTerreno;
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
     }
 
     public Usuario getUsuario() {
@@ -82,5 +100,21 @@ public class Cultivo {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public TipoTerreno getTipoTerreno() {
+        return tipoTerreno;
+    }
+
+    public void setTipoTerreno(TipoTerreno tipoTerreno) {
+        this.tipoTerreno = tipoTerreno;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

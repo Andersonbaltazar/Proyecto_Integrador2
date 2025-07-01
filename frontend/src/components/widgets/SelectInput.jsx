@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-const SelectInput = ({ label, name, options = [], required = false }) => {
+const SelectInput = ({ label, name, options = [], required = false, onChange, value }) => {
   return (
     <div className="form-group d-flex align-center">
       <label htmlFor={name} className="form-label text-left">{label}:</label>
-      <select name={name} id={name} className="form-input" required={required}>
+      <select name={name} id={name} className="form-input" required={required} onChange={onChange} value={value} >
         <option value="">-- Selecciona una opción --</option>
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
