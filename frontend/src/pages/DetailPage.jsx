@@ -55,7 +55,7 @@ const DetailPage = () => {
             </h3>
             <Link
               className="enhanced-button enhanced-button--secondary"
-              to="/crops"
+              to="/sowns"
             >
               Volver
             </Link>
@@ -127,11 +127,15 @@ const DetailPage = () => {
       cancelButtonText: "Cancelar",
     });
 
-    if (result.isConfirmed){
+    if (result.isConfirmed) {
       try {
-        await deleteSown(item.id)
-        Swal.fire("¡Eliminado!", "El cultivo ha sido eliminado correctamente.", "success");
-        navigate("/crops")
+        await deleteSown(item.id);
+        Swal.fire(
+          "¡Eliminado!",
+          "El cultivo ha sido eliminado correctamente.",
+          "success"
+        );
+        navigate("/sowns");
       } catch {
         Swal.fire("Error", "No se pudo eliminar el cultivo.", "error");
       }
@@ -149,7 +153,7 @@ const DetailPage = () => {
               <div className="d-flex gap-2">
                 <Link
                   className="enhanced-button enhanced-button--secondary"
-                  to="/crops"
+                  to="/sowns"
                 >
                   <ion-icon name="arrow-back-outline"></ion-icon>
                   Volver
@@ -275,7 +279,7 @@ const DetailPage = () => {
                   <div className="d-flex justify-center">
                     <Link
                       className="enhanced-button enhanced-button--secondary"
-                      onClick={() => navigate(-1)}
+                      to={`/sown/${item.id}/ai-chat`}
                     >
                       <ion-icon name="sparkles-outline"></ion-icon>
                       Ir a ChatAI

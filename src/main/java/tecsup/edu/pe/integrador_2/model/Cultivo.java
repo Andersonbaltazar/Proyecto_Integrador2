@@ -2,6 +2,8 @@ package tecsup.edu.pe.integrador_2.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cultivo {
@@ -31,6 +33,9 @@ public class Cultivo {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVO'")
     private Estado estado = Estado.Activo;
+
+    @OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Recomendacion> recomendaciones = new ArrayList<>();
 
     // Constructor sin argumentos requerido por JPA
     public Cultivo() {}
@@ -116,5 +121,13 @@ public class Cultivo {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public List<Recomendacion> getRecomendaciones() {
+        return recomendaciones;
+    }
+
+    public void setRecomendaciones(List<Recomendacion> recomendaciones) {
+        this.recomendaciones = recomendaciones;
     }
 }
