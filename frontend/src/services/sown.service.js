@@ -28,6 +28,15 @@ export const deleteSown = async (id) => {
 };
 
 export const patchSown = async (id, estado) => {
-  const res = await axios.patch(`${API}/${id}`, estado, { withCredentials: true });
+  const res = await axios.patch(
+    `${API}/${id}`,
+    { estado },
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    }
+  );
   return res.data;
 };

@@ -56,7 +56,7 @@ const handleSubmit = async (e) => {
         timer: 2000,
         showConfirmButton: false,
       });
-      navigate("/crops");
+      navigate("/sowns");
     } else {
       res = await createSown(form);
       if (res?.ok || res?.id) {

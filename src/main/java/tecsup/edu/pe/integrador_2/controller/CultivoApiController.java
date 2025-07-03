@@ -192,9 +192,9 @@ public class CultivoApiController {
         return ResponseEntity.ok("Cultivo eliminado correctamente");
     }
 
-    @PatchMapping("/cultivo/{cultivoId}/estado")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> actualizarEstadoCultivo(
-            @PathVariable Long cultivoId,
+            @PathVariable Long id,
             @RequestBody Map<String, String> body,
             @AuthenticationPrincipal OAuth2User principal) {
 
@@ -204,7 +204,7 @@ public class CultivoApiController {
         Usuario usuario = usuarioRepository.findByGoogleId(googleId);
         if (usuario == null) return ResponseEntity.status(404).body("Usuario no encontrado");
 
-        Cultivo cultivo = cultivoRepository.findById(cultivoId).orElse(null);
+        Cultivo cultivo = cultivoRepository.findById(id).orElse(null);
         if (cultivo == null || !cultivo.getUsuario().getId().equals(usuario.getId()))
             return ResponseEntity.status(403).body("No tienes acceso a este cultivo");
 

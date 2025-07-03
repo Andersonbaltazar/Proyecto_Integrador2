@@ -8,13 +8,13 @@ const CropsListItem = ({ item, customClass }) => {
   
   // Determinar el estado del cultivo
   const getStatusClass = () => {
-    if (estado === 'completado') return 'completed';
+    if (estado === 'Completado') return 'completed';
     if (estado === 'Activo') return 'active';
     return 'pending';
   };
 
   const getStatusText = () => {
-    if (estado === 'completado') return 'Completado';
+    if (estado === 'Completado') return 'Completado';
     if (estado === 'Activo') return 'Activo';
     return 'Pendiente';
   };

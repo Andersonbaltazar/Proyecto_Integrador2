@@ -12,6 +12,7 @@ const DetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const deleteSown = useSownStore((state) => state.deleteSown);
+  const patchSown = useSownStore((state) => state.patchSown);
   const [selectedGraph, setSelectedGraph] = useState("Timeline");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [actionsDropdownOpen, setActionsDropdownOpen] = useState(false);
@@ -94,9 +95,11 @@ const DetailPage = () => {
     }
   };
 
-  const toggleState = async () => {
+  const handleToggleState = async () => {
+    const nuevoEstado = estado === "Activo" ? "Completado" : "Activo";
+
     const result = await Swal.fire({
-      title: "¿Deseas establecer el proceso como Finalizado?",
+      title: `¿Deseas marcar como ${nuevoEstado}?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -104,16 +107,14 @@ const DetailPage = () => {
       confirmButtonText: "Sí",
       cancelButtonText: "Cancelar",
     });
+
     if (result.isConfirmed) {
       try {
-        Swal.fire(
-          "Marcado como Finalizado!",
-          "El proceso del sembrío ha sido Finalizado correctamente.",
-          "success"
-        );
+        await patchSown(item.id, nuevoEstado);
+        Swal.fire("Actualizado", `Marcado como ${nuevoEstado}`, "success");
         navigate("/sowns");
-      } catch {
-        Swal.fire("Error", "Ha ocurrido un error.", "error");
+      } catch (error) {
+        Swal.fire("Error", "No se pudo actualizar.", "error");
       }
     }
   };
@@ -278,10 +279,12 @@ const DetailPage = () => {
                   <div className="d-flex justify-center mt-4">
                     <div
                       className="enhanced-button enhanced-button--secondary"
-                      onClick={toggleState}
+                      onClick={handleToggleState}
                     >
                       <ion-icon name="options-outline"></ion-icon>
-                      {estado === 'Activo' ? 'Marcar como Completado' : 'Marcar como Activo'}
+                      {estado === "Activo"
+                        ? "Marcar como Completado"
+                        : "Marcar como Activo"}
                     </div>
                   </div>
                 </div>
