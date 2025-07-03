@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,20 +13,28 @@ public class Recomendacion {
     private Long id;
 
     private String pregunta;
+
+    @Column(length = 600)
     private String respuesta;
     private LocalDateTime fecha = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "cultivo_id")
+    @JsonBackReference
     private Cultivo cultivo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'Activo'")
+    private Estado estado = Estado.Activo;
 
     public Recomendacion() {
     }
 
-    public Recomendacion(String pregunta, String respuesta, Cultivo cultivo) {
+    public Recomendacion(String pregunta, String respuesta, Cultivo cultivo, Estado estado) {
         this.pregunta = pregunta;
         this.respuesta = respuesta;
         this.cultivo = cultivo;
+        this.estado = Estado.Activo;
     }
 
     public Long getId() {
@@ -66,5 +75,13 @@ public class Recomendacion {
 
     public void setCultivo(Cultivo cultivo) {
         this.cultivo = cultivo;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

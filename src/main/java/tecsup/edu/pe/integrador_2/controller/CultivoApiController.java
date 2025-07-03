@@ -191,4 +191,32 @@ public class CultivoApiController {
         cultivoRepository.delete(cultivo);
         return ResponseEntity.ok("Cultivo eliminado correctamente");
     }
+
+    @PatchMapping("/cultivo/{cultivoId}/estado")
+    public ResponseEntity<?> actualizarEstadoCultivo(
+            @PathVariable Long cultivoId,
+            @RequestBody Map<String, String> body,
+            @AuthenticationPrincipal OAuth2User principal) {
+
+        if (principal == null) return ResponseEntity.status(401).body("Debe autenticarse.");
+
+        String googleId = (String) principal.getAttributes().get("sub");
+        Usuario usuario = usuarioRepository.findByGoogleId(googleId);
+        if (usuario == null) return ResponseEntity.status(404).body("Usuario no encontrado");
+
+        Cultivo cultivo = cultivoRepository.findById(cultivoId).orElse(null);
+        if (cultivo == null || !cultivo.getUsuario().getId().equals(usuario.getId()))
+            return ResponseEntity.status(403).body("No tienes acceso a este cultivo");
+
+        String nuevoEstado = body.get("estado");
+        if (nuevoEstado == null || (!nuevoEstado.equalsIgnoreCase("Activo") && !nuevoEstado.equalsIgnoreCase("Completado"))) {
+            return ResponseEntity.badRequest().body("Estado inválido. Debe ser 'Activo' o 'Completado'");
+        }
+
+        cultivo.setEstado(Estado.valueOf(nuevoEstado));
+        cultivoRepository.save(cultivo);
+
+        return ResponseEntity.ok("Estado del cultivo actualizado a: " + nuevoEstado);
+    }
+
 }

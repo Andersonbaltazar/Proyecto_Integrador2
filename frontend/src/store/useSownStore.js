@@ -5,6 +5,7 @@ import {
   createSown,
   updateSown,
   deleteSown,
+  patchSown,
 } from "../services/sown.service";
 
 const useSownStore = create((set) => ({
@@ -41,6 +42,14 @@ const useSownStore = create((set) => ({
     set((state) => ({
       sowns: state.sowns.filter((s) => s.id !== id),
     }));
+  },
+
+  patchSown: async (id, estado) => {
+    const updatedSown = await patchSown(id, estado);
+    set((state) => ({
+      sowns: state.sowns.map((s) => (s.id === id ? { ...s, ...updatedSown } : s)),
+    }));
+    return updatedSown;
   },
 }));
 

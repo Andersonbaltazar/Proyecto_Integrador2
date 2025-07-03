@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,11 +32,12 @@ public class Cultivo {
     private TipoTerreno tipoTerreno;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'ACTIVO'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'Activo'")
     private Estado estado = Estado.Activo;
 
-    @OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Recomendacion> recomendaciones = new ArrayList<>();
+    @OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Recomendacion> recomendaciones;
 
     // Constructor sin argumentos requerido por JPA
     public Cultivo() {}

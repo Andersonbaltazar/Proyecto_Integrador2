@@ -19,7 +19,6 @@ const DetailPage = () => {
   const actionsDropdownRef = useRef(null);
   const { item } = location.state || {};
 
-  // Modal Configuration
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal((prev) => !prev);
 
@@ -92,6 +91,30 @@ const DetailPage = () => {
         return <LineChart />;
       default:
         return <Timeline />;
+    }
+  };
+
+  const toggleState = async () => {
+    const result = await Swal.fire({
+      title: "¿Deseas establecer el proceso como Finalizado?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    });
+    if (result.isConfirmed) {
+      try {
+        Swal.fire(
+          "Marcado como Finalizado!",
+          "El proceso del sembrío ha sido Finalizado correctamente.",
+          "success"
+        );
+        navigate("/sowns");
+      } catch {
+        Swal.fire("Error", "Ha ocurrido un error.", "error");
+      }
     }
   };
 
@@ -174,12 +197,14 @@ const DetailPage = () => {
                         <ion-icon name="create-outline"></ion-icon>
                         Editar Sembrío
                       </div>
-                      <div
-                        className="dropdown-item dropdown-item--danger"
-                        onClick={handleDelete}
-                      >
-                        <ion-icon name="trash-outline"></ion-icon>
-                        Eliminar Sembrío
+                      <div className="d-flex justify-center">
+                        <div
+                          className="dropdown-item dropdown-item--danger"
+                          onClick={handleDelete}
+                        >
+                          <ion-icon name="trash-outline"></ion-icon>
+                          Eliminar Sembrío
+                        </div>
                       </div>
                     </div>
                   )}
@@ -248,6 +273,15 @@ const DetailPage = () => {
                     <div className="mt-3">
                       <h4 className="enhanced-stat-label">Descripción</h4>
                       <p className="text-justify">{descripcion}</p>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-center mt-4">
+                    <div
+                      className="enhanced-button enhanced-button--secondary"
+                      onClick={toggleState}
+                    >
+                      <ion-icon name="options-outline"></ion-icon>
+                      {estado === 'Activo' ? 'Marcar como Completado' : 'Marcar como Activo'}
                     </div>
                   </div>
                 </div>
