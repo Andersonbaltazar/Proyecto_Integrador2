@@ -26,3 +26,8 @@ export const deleteSown = async (id) => {
   const res = await axios.delete(`${API}/${id}`, { withCredentials: true });
   return res.data;
 };
+
+export const patchSown = async (id, estado) => {
+  const res = await axios.patch(`${API}/${id}`, estado, { withCredentials: true });
+  return res.data;
+};

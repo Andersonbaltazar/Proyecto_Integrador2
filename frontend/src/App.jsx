@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -18,7 +18,6 @@ import SettingsPage from "./pages/SettingsPage";
 import ProtectedRoute from "./components/components/ProtectedRoute";
 
 import useAuthStore from "./store/useAuthStore";
-import useSownStore from "./store/useSownStore";
 
 import "./css/index.css";
 
@@ -55,7 +54,7 @@ function App() {
         }
       />
       <Route
-        path="/crops"
+        path="/sowns"
         element={
           <ProtectedRoute>
             <CropsPage />
@@ -63,7 +62,7 @@ function App() {
         }
       />
       <Route
-        path="/crops/:id"
+        path="/sown/:id"
         element={
           <ProtectedRoute>
             <DetailPage />
@@ -71,7 +70,7 @@ function App() {
         }
       />
       <Route
-        path="/ai-chat"
+        path="/sown/:id/ai-chat"
         element={
           <ProtectedRoute>
             <AiChatPage />

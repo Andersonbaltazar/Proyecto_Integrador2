@@ -19,7 +19,6 @@ const DetailPage = () => {
   const actionsDropdownRef = useRef(null);
   const { item } = location.state || {};
 
-  // Modal Configuration
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal((prev) => !prev);
 
@@ -55,7 +54,7 @@ const DetailPage = () => {
             </h3>
             <Link
               className="enhanced-button enhanced-button--secondary"
-              to="/crops"
+              to="/sowns"
             >
               Volver
             </Link>
@@ -95,6 +94,30 @@ const DetailPage = () => {
     }
   };
 
+  const toggleState = async () => {
+    const result = await Swal.fire({
+      title: "¿Deseas establecer el proceso como Finalizado?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    });
+    if (result.isConfirmed) {
+      try {
+        Swal.fire(
+          "Marcado como Finalizado!",
+          "El proceso del sembrío ha sido Finalizado correctamente.",
+          "success"
+        );
+        navigate("/sowns");
+      } catch {
+        Swal.fire("Error", "Ha ocurrido un error.", "error");
+      }
+    }
+  };
+
   const getGraphTitle = () => {
     const option = graphOptions.find((opt) => opt.id === selectedGraph);
     return option ? option.label : "Gráfico";
@@ -127,11 +150,15 @@ const DetailPage = () => {
       cancelButtonText: "Cancelar",
     });
 
-    if (result.isConfirmed){
+    if (result.isConfirmed) {
       try {
-        await deleteSown(item.id)
-        Swal.fire("¡Eliminado!", "El cultivo ha sido eliminado correctamente.", "success");
-        navigate("/crops")
+        await deleteSown(item.id);
+        Swal.fire(
+          "¡Eliminado!",
+          "El cultivo ha sido eliminado correctamente.",
+          "success"
+        );
+        navigate("/sowns");
       } catch {
         Swal.fire("Error", "No se pudo eliminar el cultivo.", "error");
       }
@@ -149,7 +176,7 @@ const DetailPage = () => {
               <div className="d-flex gap-2">
                 <Link
                   className="enhanced-button enhanced-button--secondary"
-                  to="/crops"
+                  to="/sowns"
                 >
                   <ion-icon name="arrow-back-outline"></ion-icon>
                   Volver
@@ -170,12 +197,14 @@ const DetailPage = () => {
                         <ion-icon name="create-outline"></ion-icon>
                         Editar Sembrío
                       </div>
-                      <div
-                        className="dropdown-item dropdown-item--danger"
-                        onClick={handleDelete}
-                      >
-                        <ion-icon name="trash-outline"></ion-icon>
-                        Eliminar Sembrío
+                      <div className="d-flex justify-center">
+                        <div
+                          className="dropdown-item dropdown-item--danger"
+                          onClick={handleDelete}
+                        >
+                          <ion-icon name="trash-outline"></ion-icon>
+                          Eliminar Sembrío
+                        </div>
                       </div>
                     </div>
                   )}
@@ -246,6 +275,15 @@ const DetailPage = () => {
                       <p className="text-justify">{descripcion}</p>
                     </div>
                   </div>
+                  <div className="d-flex justify-center mt-4">
+                    <div
+                      className="enhanced-button enhanced-button--secondary"
+                      onClick={toggleState}
+                    >
+                      <ion-icon name="options-outline"></ion-icon>
+                      {estado === 'Activo' ? 'Marcar como Completado' : 'Marcar como Activo'}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Panel de recomendaciones */}
@@ -275,7 +313,7 @@ const DetailPage = () => {
                   <div className="d-flex justify-center">
                     <Link
                       className="enhanced-button enhanced-button--secondary"
-                      onClick={() => navigate(-1)}
+                      to={`/sown/${item.id}/ai-chat`}
                     >
                       <ion-icon name="sparkles-outline"></ion-icon>
                       Ir a ChatAI

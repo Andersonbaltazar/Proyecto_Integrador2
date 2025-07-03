@@ -68,7 +68,7 @@ const CropsListItem = ({ item, customClass }) => {
         </div>
         <div className="progress-card-detail">
           <ion-icon name="leaf"></ion-icon>
-          <span>{tipoTerreno.nombre || 'Sin tipo de terreno'}</span>
+          <span>{tipoTerreno?.nombre || 'Sin tipo de terreno'}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="location"></ion-icon>
