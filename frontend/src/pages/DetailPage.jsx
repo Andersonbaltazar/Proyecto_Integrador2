@@ -4,15 +4,15 @@ import Sidebar from "../components/layouts/Sidebar";
 import Timeline from "../components/modules/Timeline";
 import LineChart from "../components/modules/LinearChart";
 import Button from "../components/widgets/Button";
-import useSownStore from "../store/useSownStore";
+import useCropStore from "../store/useCropStore";
 import CultivoModal from "../components/CultivoModal";
 import Swal from "sweetalert2";
 
 const DetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const deleteSown = useSownStore((state) => state.deleteSown);
-  const patchSown = useSownStore((state) => state.patchSown);
+  const deleteCrop = useCropStore((state) => state.deleteCrop);
+  const patchCrop = useCropStore((state) => state.patchCrop);
   const [selectedGraph, setSelectedGraph] = useState("Timeline");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [actionsDropdownOpen, setActionsDropdownOpen] = useState(false);
@@ -55,7 +55,7 @@ const DetailPage = () => {
             </h3>
             <Link
               className="enhanced-button enhanced-button--secondary"
-              to="/sowns"
+              to="/crops"
             >
               Volver
             </Link>
@@ -67,7 +67,6 @@ const DetailPage = () => {
 
   const {
     nombre,
-    cultivo,
     fechaSiembra,
     descripcion,
     localidad,
@@ -110,9 +109,9 @@ const DetailPage = () => {
 
     if (result.isConfirmed) {
       try {
-        await patchSown(item.id, nuevoEstado);
+        await patchCrop(item.id, nuevoEstado);
         Swal.fire("Actualizado", `Marcado como ${nuevoEstado}`, "success");
-        navigate("/sowns");
+        navigate("/crops");
       } catch (error) {
         Swal.fire("Error", "No se pudo actualizar.", "error");
       }
@@ -153,13 +152,13 @@ const DetailPage = () => {
 
     if (result.isConfirmed) {
       try {
-        await deleteSown(item.id);
+        await deleteCrop(item.id);
         Swal.fire(
           "¡Eliminado!",
           "El cultivo ha sido eliminado correctamente.",
           "success"
         );
-        navigate("/sowns");
+        navigate("/crops");
       } catch {
         Swal.fire("Error", "No se pudo eliminar el cultivo.", "error");
       }
@@ -173,15 +172,22 @@ const DetailPage = () => {
         <article className="d-flex flex-column w-full h-full">
           <header className="enhanced-header">
             <div className="d-flex justify-between align-center w-full flex-wrap gap-3">
-              <h1 className="enhanced-title">Detalles del Sembrío</h1>
+              <h1 className="enhanced-title">Detalles del Cultivo</h1>
               <div className="d-flex gap-2">
                 <Link
                   className="enhanced-button enhanced-button--secondary"
-                  to="/sowns"
+                  to="/crops"
                 >
                   <ion-icon name="arrow-back-outline"></ion-icon>
                   Volver
                 </Link>
+                <Link
+                      className="enhanced-button enhanced-button--secondary"
+                      to={`/crop/${item.id}/ai-chat`}
+                    >
+                      <ion-icon name="sparkles-outline"></ion-icon>
+                      Ir a ChatAI
+                    </Link>
 
                 {/* Dropdown de acciones */}
                 <div className="dropdown" ref={actionsDropdownRef}>
@@ -225,15 +231,6 @@ const DetailPage = () => {
                       <span className="progress-card-status active">
                         Activo
                       </span>
-                    </div>
-
-                    <div className="progress-card-details">
-                      <div className="progress-card-detail">
-                        <ion-icon name="nutrition"></ion-icon>
-                        <span>
-                          <strong>Cultivo:</strong> {cultivo}
-                        </span>
-                      </div>
                     </div>
 
                     <div className="progress-card-details">
@@ -312,15 +309,6 @@ const DetailPage = () => {
                         Mantener control de temperatura
                       </li>
                     </ul>
-                  </div>
-                  <div className="d-flex justify-center">
-                    <Link
-                      className="enhanced-button enhanced-button--secondary"
-                      to={`/sown/${item.id}/ai-chat`}
-                    >
-                      <ion-icon name="sparkles-outline"></ion-icon>
-                      Ir a ChatAI
-                    </Link>
                   </div>
                 </div>
               </div>

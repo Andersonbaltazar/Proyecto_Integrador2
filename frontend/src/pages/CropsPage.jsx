@@ -5,7 +5,7 @@ import CropsStats from '../components/modules/CropsStats';
 import EnhancedSearchBar from '../components/widgets/EnhancedSearchBar';
 import EnhancedButton from '../components/widgets/EnhancedButton';
 import CultivoModal from '../components/CultivoModal';
-import useSownStore from '../store/useSownStore';
+import useCropStore from '../store/useCropStore';
 
 const CropsPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,14 +13,14 @@ const CropsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filterActive, setFilterActive] = useState(false);
 
-  const sowns = useSownStore((state) => state.sowns);
-  const fetchSowns = useSownStore((state) => state.fetchSowns);
+  const crops = useCropStore((state) => state.crops);
+  const fetchCrops = useCropStore((state) => state.fetchCrops);
 
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
       try {
-        await fetchSowns();
+        await fetchCrops();
       } catch (error) {
         console.error('Error loading crops:', error);
       } finally {
@@ -29,9 +29,10 @@ const CropsPage = () => {
     };
     
     loadData();
-  }, [fetchSowns]);
+  }, [fetchCrops]);
 
-  const filteredSowns = sowns.filter((c) =>
+  const filteredCrops = crops.filter((c) =>
+    c.cultivo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.nombre?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -53,10 +54,10 @@ const CropsPage = () => {
         <article className="page-content-container d-flex flex-column">
           {/* Enhanced Header */}
           <header className="enhanced-header">
-            <h1 className="enhanced-title">Sembríos</h1>
+            <h1 className="enhanced-title">Cultivos</h1>
             <div className="enhanced-controls">
               <EnhancedSearchBar
-                placeholder="Buscar sembríos..."
+                placeholder="Buscar cultivos..."
                 onSearch={setSearchTerm}
               />
               <div className="enhanced-buttons">
@@ -90,13 +91,13 @@ const CropsPage = () => {
             ) : (
               <>
                 {/* Stats Section */}
-                {sowns.length > 0 && (
-                  <CropsStats data={sowns} searchTerm={searchTerm} />
+                {crops.length > 0 && (
+                  <CropsStats data={crops} searchTerm={searchTerm} />
                 )}
                 
                 {/* List Section */}
                 <div className="enhanced-list-container">
-                  {filteredSowns.length === 0 ? (
+                  {filteredCrops.length === 0 ? (
                     <div className="enhanced-empty-state">
                       <h3 className="enhanced-empty-title">
                         {searchTerm ? 'No se encontraron sembríos' : 'No hay sembríos registrados'}
@@ -120,7 +121,7 @@ const CropsPage = () => {
                       )}
                     </div>
                   ) : (
-                    <CropsList data={filteredSowns} />
+                    <CropsList data={filteredCrops} />
                   )}
                 </div>
               </>

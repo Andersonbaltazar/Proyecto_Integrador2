@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import ReactMarkdown from "react-markdown";
 
 const Message = ({ message }) => {
   return (
-    <div className={` ${message.from === 'user' ? 'user-message' : 'ai-message'}`}>
-      <p className="chat-message fs-3-5">{message.text}</p>
+    <div className={`chat-message fs-3-5 ${message.from === 'user' ? 'user-message' : 'ai-message'}` }>
+      <ReactMarkdown >{message.text}</ReactMarkdown>
     </div>
   );
 };

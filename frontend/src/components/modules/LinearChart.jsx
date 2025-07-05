@@ -21,11 +21,11 @@ ChartJS.register(
 );
 
 const data = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
   datasets: [
     {
       label: 'Temperatura (°C)',
-      data: [22, 25, 20, 23, 26],
+      data: [22, 25, 20, 23, 25],
       borderColor: 'rgba(75,192,192,1)',
       backgroundColor: 'rgba(75,192,192,0.2)',
       tension: 0

@@ -3,7 +3,8 @@ package tecsup.edu.pe.integrador_2.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+
+import jakarta.validation.constraints.Future;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,7 @@ public class Cultivo {
 
     private String nombre;
 
-    private String cultivo;
-
+    @Future(message = "La fecha de siembra debe ser una fecha futura")
     private LocalDate fechaSiembra;
 
     private String descripcion;
@@ -43,10 +43,9 @@ public class Cultivo {
     public Cultivo() {}
 
     // Constructor con todos los parámetros
-    public Cultivo(String nombre, String cultivo, LocalDate fechaSiembra, String descripcion,
+    public Cultivo(String nombre, LocalDate fechaSiembra, String descripcion,
                    String localidad, Usuario usuario, TipoTerreno tipoTerreno) {
         this.nombre = nombre;
-        this.cultivo = cultivo;
         this.fechaSiembra = fechaSiembra;
         this.descripcion = descripcion;
         this.localidad = localidad;
@@ -67,14 +66,6 @@ public class Cultivo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getCultivo() {
-        return cultivo;
-    }
-
-    public void setCultivo(String cultivo) {
-        this.cultivo = cultivo;
     }
 
     public LocalDate getFechaSiembra() {

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-const FormLabel = ({ label, name, type, placeholder, onChange, value }) => {
+const FormLabel = ({ label, name, type, placeholder, onChange, value, ...rest }) => {
   return (
     <div className="form-group d-flex justify-between align-center">
         <label className="form-label text-left">{label}:</label>
-        <input type={type} className="form-input" name={name} placeholder={placeholder} required onChange={onChange} value={value}/>
+        <input type={type} className="form-input" name={name} placeholder={placeholder} required onChange={onChange} value={value} {...rest}/>
     </div>
   );
 };

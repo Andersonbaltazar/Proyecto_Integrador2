@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const CropsListItem = ({ item, customClass }) => {
   if (!item) return null;
 
-  const { nombre, cultivo, fechaSiembra,  estado, localidad, tipoTerreno } = item;
+  const { nombre, fechaSiembra,  estado, localidad, tipoTerreno } = item;
 
   
   // Determinar el estado del cultivo
@@ -63,20 +63,16 @@ const CropsListItem = ({ item, customClass }) => {
       {/* Detalles del cultivo */}
       <div className="progress-card-details">
         <div className="progress-card-detail">
-          <ion-icon name="nutrition"></ion-icon>
-          <span>{cultivo}</span>
-        </div>
-        <div className="progress-card-detail">
           <ion-icon name="leaf"></ion-icon>
-          <span>{tipoTerreno?.nombre || 'Sin tipo de terreno'}</span>
+          <span><strong>Tipo de Terreno: </strong>{tipoTerreno?.nombre || 'Sin tipo de terreno'}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="location"></ion-icon>
-          <span>{localidad || 'Sin localidad de terreno'}</span>
+          <span><strong>Localidad: </strong>{localidad || 'Sin localidad de terreno'}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="calendar"></ion-icon>
-          <span>{formatDate(fechaSiembra)}</span>
+          <span><strong>Fecha de Inicio: </strong>{fechaSiembra}</span>
         </div>
         <div className="progress-card-detail">
           <ion-icon name="trending-up"></ion-icon>

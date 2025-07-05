@@ -33,7 +33,7 @@ const CropsList = ({ data }) => {
         data.map((item, index) => {
           const bgClass = index % 2 === 0 ? "enhanced-card progress-card-1" : "enhanced-card progress-card-2";
           return (
-            <Link to={`/sown/${item.id}`} key={item.id} state={{ item }} style={{ textDecoration: 'none' }}>
+            <Link to={`/crop/${item.id}`} key={item.id} state={{ item }} style={{ textDecoration: 'none' }}>
               <ProgressPanelItem
                 item={item}
                 customClass={bgClass}

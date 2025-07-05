@@ -54,7 +54,7 @@ function App() {
         }
       />
       <Route
-        path="/sowns"
+        path="/crops"
         element={
           <ProtectedRoute>
             <CropsPage />
@@ -62,7 +62,7 @@ function App() {
         }
       />
       <Route
-        path="/sown/:id"
+        path="/crop/:id"
         element={
           <ProtectedRoute>
             <DetailPage />
@@ -70,7 +70,7 @@ function App() {
         }
       />
       <Route
-        path="/sown/:id/ai-chat"
+        path="/crop/:id/ai-chat"
         element={
           <ProtectedRoute>
             <AiChatPage />

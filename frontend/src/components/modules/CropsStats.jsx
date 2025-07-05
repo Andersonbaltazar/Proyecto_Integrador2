@@ -10,7 +10,7 @@ const CropsStats = ({ data, searchTerm }) => {
 
   const stats = [
     {
-      label: 'Total Sembríos',
+      label: 'Total Cultivos',
       value: totalCrops,
       icon: 'leaf',
       color: 'var(--primary-color)',

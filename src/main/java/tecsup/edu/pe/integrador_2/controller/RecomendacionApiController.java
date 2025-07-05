@@ -54,7 +54,7 @@ public class RecomendacionApiController {
         if (cultivo == null || !cultivo.getUsuario().getId().equals(usuario.getId()))
             return ResponseEntity.status(403).body("No tienes acceso a este cultivo");
 
-        StringBuilder contexto = new StringBuilder("Considerando mi cultivo de " + cultivo.getCultivo());
+        StringBuilder contexto = new StringBuilder("Considerando mi cultivo de " + cultivo.getNombre());
         if (cultivo.getFechaSiembra() != null)
             contexto.append(" sembrado el ").append(cultivo.getFechaSiembra());
         if (cultivo.getDescripcion() != null && !cultivo.getDescripcion().isEmpty())

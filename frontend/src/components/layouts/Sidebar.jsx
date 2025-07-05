@@ -18,12 +18,9 @@ const Sidebar = () => {
             <Link className={currentPath === '/home' ? 'menu-item-active' : 'menu-item'} to="/home">
                 <SidebarMenuItem provider="Inicio" />
             </Link>
-            <Link className={currentPath.startsWith('/sowns') ? 'menu-item-active' : 'menu-item'} to="/sowns">
+            <Link className={currentPath.startsWith('/crops') ? 'menu-item-active' : 'menu-item'} to="/crops">
                 <SidebarMenuItem provider="Cultivos" />
             </Link>
-            <Link className={currentPath === '/ai-chat' ? 'menu-item-active' : 'menu-item'} to="/ai-chat">
-                <SidebarMenuItem provider="AI Chat" />
-            </Link>        
             <Link className={currentPath === '/settings' ? 'menu-item-active' : 'menu-item'} to="/settings">
                 <SidebarMenuItem provider="Configuración" />
             </Link>           

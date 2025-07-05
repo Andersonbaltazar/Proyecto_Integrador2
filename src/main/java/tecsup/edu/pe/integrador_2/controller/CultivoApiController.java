@@ -1,5 +1,6 @@
 package tecsup.edu.pe.integrador_2.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -49,6 +50,7 @@ public class CultivoApiController {
 
     @PostMapping("/guardar")
     public ResponseEntity<?> guardarCultivo(
+            @Valid
             @RequestBody Map<String, Object> payload,
             @AuthenticationPrincipal OAuth2User principal) {
 
@@ -64,7 +66,6 @@ public class CultivoApiController {
 
         try {
             String nombre = (String) payload.get("nombre");
-            String cultivo = (String) payload.get("cultivo");
             String descripcion = (String) payload.get("descripcion");
             String localidad = (String) payload.get("localidad");
 
@@ -80,7 +81,7 @@ public class CultivoApiController {
                 fechaSiembra = LocalDate.parse(payload.get("fechaSiembra").toString());
             }
 
-            Cultivo nuevoCultivo = new Cultivo(nombre, cultivo, fechaSiembra, descripcion, localidad, usuario, tipoTerreno);
+            Cultivo nuevoCultivo = new Cultivo(nombre, fechaSiembra, descripcion, localidad, usuario, tipoTerreno);
             cultivoRepository.save(nuevoCultivo);
 
             return ResponseEntity.ok(nuevoCultivo);
@@ -91,6 +92,7 @@ public class CultivoApiController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarCultivo(
+            @Valid
             @PathVariable Long id,
             @RequestBody Map<String, Object> payload,
             @AuthenticationPrincipal OAuth2User principal) {
@@ -120,9 +122,6 @@ public class CultivoApiController {
         try {
             if (payload.containsKey("nombre"))
                 cultivo.setNombre((String) payload.get("nombre"));
-
-            if (payload.containsKey("cultivo"))
-                cultivo.setCultivo((String) payload.get("cultivo"));
 
             if (payload.containsKey("descripcion"))
                 cultivo.setDescripcion((String) payload.get("descripcion"));
