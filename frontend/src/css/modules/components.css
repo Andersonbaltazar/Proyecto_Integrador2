@@ -357,11 +357,8 @@
 .message-historial::-webkit-scrollbar {
   display: none;             /* Chrome, Safari y Opera */
 }
-.chat-message {
-    display: inline-block; /* Clave para que se ajuste al contenido */
-    padding: 12px 18px 12px 18px;
+.chat-message {/* Clave para que se ajuste al contenido */
     border-radius: calc(var(--size) * 3.5);
-    background-color: #ecebeb;
     word-wrap: break-word; /* Opcional para evitar desbordes con texto largo */
 }
 .user-message{
