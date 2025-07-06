@@ -14,6 +14,7 @@ import DetailPage from "./pages/DetailPage";
 import AiChatPage from "./pages/AiChatPage";
 import CallbackPage from "./pages/CallbackPage";
 import SettingsPage from "./pages/SettingsPage";
+import LandingPage from "./pages/LandingPage";
 
 import ProtectedRoute from "./components/components/ProtectedRoute";
 
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/callback" element={<CallbackPage />} />
       <Route
