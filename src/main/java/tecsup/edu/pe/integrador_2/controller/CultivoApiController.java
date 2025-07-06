@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import tecsup.edu.pe.integrador_2.model.Cultivo;
 import tecsup.edu.pe.integrador_2.model.Estado;
@@ -50,7 +51,7 @@ public class CultivoApiController {
 
     @PostMapping("/guardar")
     public ResponseEntity<?> guardarCultivo(
-            @Valid
+            @Validated
             @RequestBody Map<String, Object> payload,
             @AuthenticationPrincipal OAuth2User principal) {
 
@@ -92,7 +93,7 @@ public class CultivoApiController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarCultivo(
-            @Valid
+            @Validated
             @PathVariable Long id,
             @RequestBody Map<String, Object> payload,
             @AuthenticationPrincipal OAuth2User principal) {

@@ -66,6 +66,7 @@ const DetailPage = () => {
   }
 
   const {
+    id,
     nombre,
     fechaSiembra,
     descripcion,
@@ -86,11 +87,11 @@ const DetailPage = () => {
   const showGraph = () => {
     switch (selectedGraph) {
       case "Timeline":
-        return <Timeline />;
+        return <Timeline cultivoId={id}/>;
       case "Comercio":
         return <LineChart />;
       default:
-        return <Timeline />;
+        return <Timeline cultivoId={id} />;
     }
   };
 
@@ -109,7 +110,7 @@ const DetailPage = () => {
 
     if (result.isConfirmed) {
       try {
-        await patchCrop(item.id, nuevoEstado);
+        await patchCrop(id, nuevoEstado);
         Swal.fire("Actualizado", `Marcado como ${nuevoEstado}`, "success");
         navigate("/crops");
       } catch (error) {
@@ -152,7 +153,7 @@ const DetailPage = () => {
 
     if (result.isConfirmed) {
       try {
-        await deleteCrop(item.id);
+        await deleteCrop(id);
         Swal.fire(
           "¡Eliminado!",
           "El cultivo ha sido eliminado correctamente.",
@@ -183,7 +184,7 @@ const DetailPage = () => {
                 </Link>
                 <Link
                       className="enhanced-button enhanced-button--secondary"
-                      to={`/crop/${item.id}/ai-chat`}
+                      to={`/crop/${id}/ai-chat`}
                     >
                       <ion-icon name="sparkles-outline"></ion-icon>
                       Ir a ChatAI

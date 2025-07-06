@@ -173,7 +173,7 @@
     width: 100%;
     margin-top: calc(var(--size) * 5);
 }
-.title-progress-container{
+.title-arcontainer{
     font-size: calc(var(--size) * 8);
     color: var(--primary-text-color);
     font-weight: 500;
@@ -1596,7 +1596,7 @@
 }
 
 .progress-card-content {
-  padding: calc(var(--size) * 2);
+  padding: calc(var(--size) * 4);
 }
 
 .progress-card-header {
@@ -1625,4 +1625,68 @@
 
 .gap-3 {
   gap: calc(var(--size) * 3);
+}
+
+/* --- Timeline Modern Custom Styles --- */
+.chrono-card, .chrono-icons, .chrono-timeline {
+  background: #fff !important;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px rgba(80, 200, 120, 0.08) !important;
+  border: 1px solid #e0f7e9 !important;
+  padding: 24px !important;
+  color: #1d492c !important;
+  font-size: 1.1rem !important;
+}
+
+.chrono-horizontal .chrono-timeline {
+  background: linear-gradient(90deg, #b6f5c6 0%, #a0e9e0 100%) !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+}
+
+.chrono-icons {
+  background: linear-gradient(135deg, #a0e9e0 0%, #b6f5c6 100%) !important;
+  border: 2px solid #4ad991 !important;
+  box-shadow: 0 2px 8px rgba(80, 200, 120, 0.15) !important;
+}
+
+.chrono-card {
+  animation: fadeInUp 0.6s cubic-bezier(.39,.575,.56,1) both;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 600px) {
+  .chrono-card {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Timeline Spinner Loader Styles */
+.timeline-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  width: 100%;
+  animation: fadeInUp 0.5s;
+}
+
+.timeline-spinner {
+  width: 56px;
+  height: 56px;
+  border: 6px solid #e0f7e9;
+  border-top: 6px solid #4ad991;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 18px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
