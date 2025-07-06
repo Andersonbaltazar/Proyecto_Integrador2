@@ -89,7 +89,7 @@ const DetailPage = () => {
       case "Timeline":
         return <Timeline cultivoId={id}/>;
       case "Comercio":
-        return <LineChart />;
+        return <LineChart cultivoId={id} />;
       default:
         return <Timeline cultivoId={id} />;
     }
