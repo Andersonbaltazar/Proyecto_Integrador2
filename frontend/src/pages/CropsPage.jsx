@@ -7,11 +7,18 @@ import EnhancedButton from '../components/widgets/EnhancedButton';
 import CultivoModal from '../components/CultivoModal';
 import useCropStore from '../store/useCropStore';
 
+const FILTERS = [
+  { label: 'Todos', value: 'all' },
+  { label: 'Activos', value: 'activo' },
+  { label: 'Completados', value: 'completado' },
+];
+
 const CropsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [filterActive, setFilterActive] = useState(false);
+  const [statusFilter, setStatusFilter] = useState('all');
 
   const crops = useCropStore((state) => state.crops);
   const fetchCrops = useCropStore((state) => state.fetchCrops);
@@ -31,10 +38,17 @@ const CropsPage = () => {
     loadData();
   }, [fetchCrops]);
 
-  const filteredCrops = crops.filter((c) =>
-    c.cultivo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.nombre?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filtrado por estado y búsqueda
+  const filteredCrops = crops.filter((c) => {
+    const matchesSearch =
+      c.cultivo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.nombre?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' ||
+      (statusFilter === 'activo' && c.estado === 'Activo') ||
+      (statusFilter === 'completado' && c.estado === 'Completado');
+    return matchesSearch && matchesStatus;
+  });
 
   const toggleModal = () => setShowModal((prev) => !prev);
   const toggleFilter = () => setFilterActive((prev) => !prev);
@@ -69,16 +83,29 @@ const CropsPage = () => {
                 >
                   Agregar
                 </EnhancedButton>
-                <EnhancedButton
-                  onClick={handleFilterClick}
-                  icon="filter"
-                  variant={filterActive ? "primary" : "secondary"}
-                  size="medium"
-                  className={filterActive ? "enhanced-filter-button active" : "enhanced-filter-button"}
-                >
-                  Filtros
-                </EnhancedButton>
               </div>
+            </div>
+            {/* Filtros por estado */}
+            <div className="crop-status-filters" style={{ marginTop: '1rem', display: 'flex', gap: '1rem' }}>
+              {FILTERS.map(f => (
+                <button
+                  key={f.value}
+                  className={`crop-status-btn${statusFilter === f.value ? ' active' : ''}`}
+                  onClick={() => setStatusFilter(f.value)}
+                  style={{
+                    padding: '0.5rem 1.2rem',
+                    borderRadius: '6px',
+                    border: '1px solid #cbd5e1',
+                    background: statusFilter === f.value ? '#2d5a27' : '#fff',
+                    color: statusFilter === f.value ? '#fff' : '#2d5a27',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {f.label}
+                </button>
+              ))}
             </div>
           </header>
 
