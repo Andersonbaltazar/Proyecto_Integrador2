@@ -3,6 +3,7 @@ import Sidebar from "../components/layouts/Sidebar";
 import EnhancedButton from "../components/widgets/EnhancedButton";
 import useAuthStore from "../store/useAuthStore";
 
+
 const SettingsPage = () => {
   const { user } = useAuthStore();
   const { updateUser } = useAuthStore();
@@ -47,97 +48,98 @@ const SettingsPage = () => {
       ...prev,
       [name]: value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    setTouched(prev => ({
+    setTouched((prev) => ({
       ...prev,
-      [name]: true
+      [name]: true,
     }));
-    
+
     // Validate field on blur
     validateField(name, value);
   };
 
   const validateField = (name, value) => {
-    let error = '';
-    
+    let error = "";
+
     switch (name) {
-      case 'first_name':
+      case "first_name":
         if (!value.trim()) {
-          error = 'El nombre es requerido';
+          error = "El nombre es requerido";
         } else if (value.trim().length < 2) {
-          error = 'El nombre debe tener al menos 2 caracteres';
+          error = "El nombre debe tener al menos 2 caracteres";
         } else if (value.trim().length > 50) {
-          error = 'El nombre no puede exceder 50 caracteres';
+          error = "El nombre no puede exceder 50 caracteres";
         } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value.trim())) {
-          error = 'El nombre solo puede contener letras y espacios';
+          error = "El nombre solo puede contener letras y espacios";
         }
         break;
-        
-      case 'last_name':
+
+      case "last_name":
         if (!value.trim()) {
-          error = 'Los apellidos son requeridos';
+          error = "Los apellidos son requeridos";
         } else if (value.trim().length < 2) {
-          error = 'Los apellidos deben tener al menos 2 caracteres';
+          error = "Los apellidos deben tener al menos 2 caracteres";
         } else if (value.trim().length > 50) {
-          error = 'Los apellidos no pueden exceder 50 caracteres';
+          error = "Los apellidos no pueden exceder 50 caracteres";
         } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value.trim())) {
-          error = 'Los apellidos solo pueden contener letras y espacios';
+          error = "Los apellidos solo pueden contener letras y espacios";
         }
         break;
-        
+
       default:
         break;
     }
-    
-    setErrors(prev => ({
+
+    setErrors((prev) => ({
       ...prev,
-      [name]: error
+      [name]: error,
     }));
-    
+
     return error;
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     // Validate all fields
-    Object.keys(formData).forEach(field => {
-      if (field !== 'email' && field !== 'picture') { // Skip email and picture validation
+    Object.keys(formData).forEach((field) => {
+      if (field !== "email" && field !== "picture") {
+        // Skip email and picture validation
         const error = validateField(field, formData[field]);
         if (error) {
           newErrors[field] = error;
         }
       }
     });
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const hasChanges = () => {
     if (!user) return false;
-    
+
     return (
-      formData.first_name.trim() !== (user.first_name || '') ||
-      formData.last_name.trim() !== (user.last_name || '') ||
+      formData.first_name.trim() !== (user.first_name || "") ||
+      formData.last_name.trim() !== (user.last_name || "") ||
       formData.pictureFile // New image selected
     );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Check if there are any changes
     if (!hasChanges()) {
       setMessage({
@@ -146,7 +148,7 @@ const SettingsPage = () => {
       });
       return;
     }
-    
+
     // Validate form before submission
     if (!validateForm()) {
       setMessage({
@@ -155,7 +157,7 @@ const SettingsPage = () => {
       });
       return;
     }
-    
+
     setIsLoading(true);
     setMessage({ type: "", text: "" });
 
@@ -190,16 +192,17 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="enhanced-page-container">
-      <div className="page-layout d-flex">
-        <Sidebar />
-        <article className="page-content-container d-flex flex-column">
-          {/* Enhanced Header */}
-          <header className="enhanced-header">
-            <h1 className="enhanced-title">Configuración de la Cuenta</h1>
-            <div className="enhanced-controls">
-              <div className="enhanced-buttons">
-                                  <input
+    <div className="settings-page-root">
+        <div className="enhanced-page-container">
+        <div className="page-layout d-flex">
+          <Sidebar />
+          <article className="page-content-container d-flex flex-column">
+            {/* Enhanced Header */}
+            <header className="enhanced-header">
+              <h1 className="enhanced-title">Configuración de la Cuenta</h1>
+              <div className="enhanced-controls">
+                <div className="enhanced-buttons">
+                  <input
                     ref={fileInputRef}
                     type="file"
                     name="picture"
@@ -215,9 +218,14 @@ const SettingsPage = () => {
                           });
                           return;
                         }
-                        
+
                         // Validate file type
-                        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                        const validTypes = [
+                          "image/jpeg",
+                          "image/jpg",
+                          "image/png",
+                          "image/webp",
+                        ];
                         if (!validTypes.includes(file.type)) {
                           setMessage({
                             type: "error",
@@ -225,14 +233,14 @@ const SettingsPage = () => {
                           });
                           return;
                         }
-                        
+
                         const previewURL = URL.createObjectURL(file);
                         setFormData((prev) => ({
                           ...prev,
                           picture: previewURL,
                           pictureFile: file,
                         }));
-                        
+
                         setMessage({
                           type: "success",
                           text: "Imagen seleccionada correctamente.",
@@ -241,153 +249,165 @@ const SettingsPage = () => {
                     }}
                     style={{ display: "none" }}
                   />
-              </div>
-            </div>
-          </header>
-
-          {/* Enhanced Content */}
-          <section className="enhanced-content">
-            {/* Profile Section */}
-            <div className="enhanced-list-container">
-              <div className="settings-section-header">
-                <div className="settings-section-icon">
-                  <ion-icon name="person-circle-outline"></ion-icon>
-                </div>
-                <div className="settings-section-info">
-                  <h2 className="settings-section-title">Perfil de Cuenta</h2>
-                  <p className="settings-section-description">
-                    Administra tu cuenta. Todos los cambios que realices aquí se
-                    aplicarán a todos tus espacios de trabajo. Puedes actualizar
-                    tu información personal, cambiar tu foto de perfil y
-                    gestionar la configuración de seguridad.
-                  </p>
                 </div>
               </div>
+            </header>
 
-              <form onSubmit={handleSubmit} className="settings-form">
-                <div className="settings-form-layout">
-                  <div className="settings-form-fields">
-                    <div className="form-field-group">
-                      <label htmlFor="first_name" className="form-field-label">
-                        <ion-icon name="person-outline"></ion-icon>
-                        Nombre
-                      </label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        value={formData.first_name}
-                        className={`form-field-input ${errors.first_name && touched.first_name ? 'form-field-input--error' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Ingresa tu nombre"
-                      />
-                      {errors.first_name && touched.first_name && (
-                        <small className="form-field-error">
-                          <ion-icon name="alert-circle-outline"></ion-icon>
-                          {errors.first_name}
-                        </small>
-                      )}
-                    </div>
+            {/* Enhanced Content */}
+            <section className="enhanced-content">
+              {/* Profile Section */}
+              <div className="enhanced-list-container">
+                <div className="settings-section-header">
+                  <div className="settings-section-icon">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                  </div>
+                  <div className="settings-section-info">
+                    <h2 className="settings-section-title">Perfil de Cuenta</h2>
+                    <p className="settings-section-description">
+                      Administra tu cuenta. Todos los cambios que realices aquí
+                      se aplicarán a todos tus espacios de trabajo. Puedes
+                      actualizar tu información personal, cambiar tu foto de
+                      perfil y gestionar la configuración de seguridad.
+                    </p>
+                  </div>
+                </div>
 
-                    <div className="form-field-group">
-                      <label htmlFor="last_name" className="form-field-label">
-                        <ion-icon name="person-outline"></ion-icon>
-                        Apellidos
-                      </label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        value={formData.last_name}
-                        className={`form-field-input ${errors.last_name && touched.last_name ? 'form-field-input--error' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Ingresa tus apellidos"
-                      />
-                      {errors.last_name && touched.last_name && (
-                        <small className="form-field-error">
-                          <ion-icon name="alert-circle-outline"></ion-icon>
-                          {errors.last_name}
-                        </small>
-                      )}
-                    </div>
-
-                    <div className="form-field-group">
-                      <label htmlFor="email" className="form-field-label">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={formData.email}
-                        className="form-field-input form-field-disabled"
-                        disabled
-                        placeholder="Tu email"
-                      />
-                      <small className="form-field-help">
-                        El email no se puede modificar por seguridad
-                      </small>
-                    </div>
-
-                    <div className="form-actions">
-                      {message.text && (
-                        <div
-                          className={`message-alert message-alert--${message.type}`}
+                <form onSubmit={handleSubmit} className="settings-form">
+                  <div className="settings-form-layout">
+                    <div className="settings-form-fields">
+                      <div className="form-field-group">
+                        <label
+                          htmlFor="first_name"
+                          className="form-field-label"
                         >
-                          <ion-icon
-                            name={
-                              message.type === "success"
-                                ? "checkmark-circle-outline"
-                                : "alert-circle-outline"
-                            }
-                          ></ion-icon>
-                          {message.text}
-                        </div>
-                      )}
-                      <EnhancedButton
-                        type="submit"
-                        icon="save"
-                        variant="secondary"
-                        size="medium"
-                        loading={isLoading}
-                        disabled={isLoading || !hasChanges()}
-                      >
-                        {isLoading ? "Guardando..." : "Guardar Cambios"}
-                      </EnhancedButton>
-                    </div>
-                  </div>
-
-                  <div className="settings-profile-picture">
-                    <div className="profile-picture-container">
-                      <div className="profile-picture-wrapper">
-                        <img
-                          src={
-                            formData.picture ||
-                            "https://via.placeholder.com/150x150/224f45/ffffff?text=Usuario"
-                          }
-                          alt={formData.name || "Usuario"}
-                          className="profile-picture"
+                          <ion-icon name="person-outline"></ion-icon>
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          value={formData.first_name}
+                          className={`form-field-input ${
+                            errors.first_name && touched.first_name
+                              ? "form-field-input--error"
+                              : ""
+                          }`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Ingresa tu nombre"
                         />
+                        {errors.first_name && touched.first_name && (
+                          <small className="form-field-error">
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                            {errors.first_name}
+                          </small>
+                        )}
                       </div>
-                                             <EnhancedButton
-                         type="button"
-                         onClick={() => fileInputRef.current.click()}
-                         icon="image"
-                         variant="secondary"
-                         size="medium"
-                       >
-                         Cambiar Foto
-                       </EnhancedButton>
+
+                      <div className="form-field-group">
+                        <label htmlFor="last_name" className="form-field-label">
+                          <ion-icon name="person-outline"></ion-icon>
+                          Apellidos
+                        </label>
+                        <input
+                          type="text"
+                          name="last_name"
+                          id="last_name"
+                          value={formData.last_name}
+                          className={`form-field-input ${
+                            errors.last_name && touched.last_name
+                              ? "form-field-input--error"
+                              : ""
+                          }`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Ingresa tus apellidos"
+                        />
+                        {errors.last_name && touched.last_name && (
+                          <small className="form-field-error">
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                            {errors.last_name}
+                          </small>
+                        )}
+                      </div>
+
+                      <div className="form-field-group">
+                        <label htmlFor="email" className="form-field-label">
+                          <ion-icon name="mail-outline"></ion-icon>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          value={formData.email}
+                          className="form-field-input form-field-disabled"
+                          disabled
+                          placeholder="Tu email"
+                        />
+                        <small className="form-field-help">
+                          El email no se puede modificar por seguridad
+                        </small>
+                      </div>
+
+                      <div className="form-actions">
+                        {message.text && (
+                          <div
+                            className={`message-alert message-alert--${message.type}`}
+                          >
+                            <ion-icon
+                              name={
+                                message.type === "success"
+                                  ? "checkmark-circle-outline"
+                                  : "alert-circle-outline"
+                              }
+                            ></ion-icon>
+                            {message.text}
+                          </div>
+                        )}
+                        <EnhancedButton
+                          type="submit"
+                          icon="save"
+                          variant="secondary"
+                          size="medium"
+                          loading={isLoading}
+                          disabled={isLoading || !hasChanges()}
+                        >
+                          {isLoading ? "Guardando..." : "Guardar Cambios"}
+                        </EnhancedButton>
+                      </div>
+                    </div>
+
+                    <div className="settings-profile-picture">
+                      <div className="profile-picture-container">
+                        <div className="profile-picture-wrapper">
+                          <img
+                            src={
+                              formData.picture ||
+                              "https://via.placeholder.com/150x150/224f45/ffffff?text=Usuario"
+                            }
+                            alt={formData.name || "Usuario"}
+                            className="profile-picture"
+                          />
+                        </div>
+                        <EnhancedButton
+                          type="button"
+                          onClick={() => fileInputRef.current.click()}
+                          icon="image"
+                          variant="secondary"
+                          size="medium"
+                        >
+                          Cambiar Foto
+                        </EnhancedButton>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
-            </div>
-          </section>
-        </article>
+                </form>
+              </div>
+            </section>
+          </article>
+        </div>
       </div>
     </div>
   );

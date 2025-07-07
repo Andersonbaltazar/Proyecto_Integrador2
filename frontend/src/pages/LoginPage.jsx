@@ -2,6 +2,7 @@ import AuthProviderButton from "../components/widgets/AuthProviderButton";
 import AuthFooter from "../components/layouts/AuthFooter";
 import HeroImage from "../components/modules/HeroImage";
 
+
 const LoginPage = () => {
   return (
     <div className="d-flex auth-layout justify-center align-center flex-wrap">

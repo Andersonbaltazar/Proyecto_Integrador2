@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import { ClipLoader } from "react-spinners";
 
+
 const CallbackPage = () => {
   const checkSession = useAuthStore((state) => state.checkSession);
   const navigate = useNavigate();
@@ -23,12 +24,12 @@ const CallbackPage = () => {
 
   return (
     <div className="d-flex flex-column justify-center align-center h-full w-full">
-      {isLoading && (
-        <>
-          <ClipLoader color="#2ecc71" size={60} />
-          <p className="mt-3">Cargando sesión...</p>
-        </>
-      )}
+        {isLoading && (
+          <>
+            <ClipLoader color="#2ecc71" size={60} />
+            <p className="mt-3">Cargando sesión...</p>
+          </>
+        )}
     </div>
   );
 };

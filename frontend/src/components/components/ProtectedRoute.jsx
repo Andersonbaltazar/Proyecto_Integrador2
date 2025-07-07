@@ -9,7 +9,9 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="d-flex justify-center align-center vh-100">
-        <h2>Cargando sesión...</h2>
+        <div className="enhanced-loading">
+          <div className="enhanced-loading-spinner"></div>
+        </div>
       </div>
     );
   }

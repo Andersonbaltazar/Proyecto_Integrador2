@@ -8,6 +8,7 @@ import useCropStore from "../store/useCropStore";
 import CultivoModal from "../components/CultivoModal";
 import Swal from "sweetalert2";
 
+
 const DetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,24 +45,26 @@ const DetailPage = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  if (!item) {
-    return (
-      <main className="page-layout d-flex">
-        <Sidebar />
-        <div className="page-content-container d-flex align-center justify-center w-full">
-          <div className="enhanced-empty-state">
-            <h3 className="enhanced-empty-title">
-              No se encontraron datos del sembrío
-            </h3>
-            <Link
-              className="enhanced-button enhanced-button--secondary"
-              to="/crops"
-            >
-              Volver
-            </Link>
+      if (!item) {
+      return (
+        <div className="detail-page-root">
+        <main className="page-layout d-flex">
+          <Sidebar />
+          <div className="page-content-container d-flex align-center justify-center w-full">
+            <div className="enhanced-empty-state">
+              <h3 className="enhanced-empty-title">
+                No se encontraron datos del sembrío
+              </h3>
+              <Link
+                className="enhanced-button enhanced-button--secondary"
+                to="/crops"
+              >
+                Volver
+              </Link>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     );
   }
 
@@ -167,203 +170,205 @@ const DetailPage = () => {
   };
 
   return (
-    <main className="page-layout d-flex">
-      <Sidebar />
-      <div className="page-content-container d-flex">
-        <article className="d-flex flex-column w-full h-full">
-          <header className="enhanced-header">
-            <div className="d-flex justify-between align-center w-full flex-wrap gap-3">
-              <h1 className="enhanced-title">Detalles del Cultivo</h1>
-              <div className="d-flex gap-2">
-                <Link
-                  className="enhanced-button enhanced-button--secondary"
-                  to="/crops"
-                >
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                  Volver
-                </Link>
-                <Link
-                      className="enhanced-button enhanced-button--secondary"
-                      to={`/crop/${id}/ai-chat`}
-                    >
-                      <ion-icon name="sparkles-outline"></ion-icon>
-                      Ir a ChatAI
-                    </Link>
-
-                {/* Dropdown de acciones */}
-                <div className="dropdown" ref={actionsDropdownRef}>
-                  <Button
+    <div className="detail-page-root">
+      <main className="page-layout d-flex">
+        <Sidebar />
+        <div className="page-content-container d-flex">
+          <article className="d-flex flex-column w-full h-full">
+            <header className="enhanced-header">
+              <div className="d-flex justify-between align-center w-full flex-wrap gap-3">
+                <h1 className="enhanced-title">Detalles del Cultivo</h1>
+                <div className="d-flex gap-2">
+                  <Link
                     className="enhanced-button enhanced-button--secondary"
-                    onClick={toggleActionsDropdown}
+                    to="/crops"
                   >
-                    <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-                  </Button>
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    Volver
+                  </Link>
+                  <Link
+                        className="enhanced-button enhanced-button--secondary"
+                        to={`/crop/${id}/ai-chat`}
+                      >
+                        <ion-icon name="sparkles-outline"></ion-icon>
+                        Ir a ChatAI
+                      </Link>
 
-                  {actionsDropdownOpen && (
-                    <div className="dropdown-menu actions-dropdown-menu">
-                      <div className="dropdown-item" onClick={handleEditCrop}>
-                        <ion-icon name="create-outline"></ion-icon>
-                        Editar Sembrío
-                      </div>
-                      <div className="d-flex justify-center">
-                        <div
-                          className="dropdown-item dropdown-item--danger"
-                          onClick={handleDelete}
-                        >
-                          <ion-icon name="trash-outline"></ion-icon>
-                          Eliminar Sembrío
+                  {/* Dropdown de acciones */}
+                  <div className="dropdown" ref={actionsDropdownRef}>
+                    <Button
+                      className="enhanced-button enhanced-button--secondary"
+                      onClick={toggleActionsDropdown}
+                    >
+                      <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                    </Button>
+
+                    {actionsDropdownOpen && (
+                      <div className="dropdown-menu actions-dropdown-menu">
+                        <div className="dropdown-item" onClick={handleEditCrop}>
+                          <ion-icon name="create-outline"></ion-icon>
+                          Editar Sembrío
+                        </div>
+                        <div className="d-flex justify-center">
+                          <div
+                            className="dropdown-item dropdown-item--danger"
+                            onClick={handleDelete}
+                          >
+                            <ion-icon name="trash-outline"></ion-icon>
+                            Eliminar Sembrío
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </header>
-
-          <section className="enhanced-content d-flex mt-3 w-full h-full">
-            <div className="w-full h-full d-flex gap-4 detail-page-layout">
-              {/* Panel de información del cultivo */}
-              <div className="detail-info-panel">
-                <div className="enhanced-card detail-card">
-                  <div className="progress-card-content">
-                    <div className="progress-card-header">
-                      <h3 className="progress-card-title">{nombre}</h3>
-                      <span className="progress-card-status active">
-                        Activo
-                      </span>
-                    </div>
-
-                    <div className="progress-card-details">
-                      <div className="progress-card-detail">
-                        <ion-icon name="leaf"></ion-icon>
-                        <span>
-                          <strong>Tipo de Terreno:</strong> {tipoTerreno.nombre}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="progress-card-details">
-                      <div className="progress-card-detail">
-                        <ion-icon name="location"></ion-icon>
-                        <span>
-                          <strong>Localidad:</strong> {localidad}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="progress-card-details">
-                      <div className="progress-card-detail">
-                        <ion-icon name="calendar"></ion-icon>
-                        <span>
-                          <strong>Fecha de Siembra:</strong> {fechaSiembra}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="progress-card-details">
-                      <div className="progress-card-detail">
-                        <ion-icon name="trending-up"></ion-icon>
-                        <span>
-                          <strong>Estado:</strong> {estado}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="mt-3">
-                      <h4 className="enhanced-stat-label">Descripción</h4>
-                      <p className="text-justify">{descripcion}</p>
-                    </div>
-                  </div>
-                  <div className="d-flex justify-center mt-4">
-                    <div
-                      className="enhanced-button enhanced-button--secondary"
-                      onClick={handleToggleState}
-                    >
-                      <ion-icon name="options-outline"></ion-icon>
-                      {estado === "Activo"
-                        ? "Marcar como Completado"
-                        : "Marcar como Activo"}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Panel de recomendaciones */}
-                <div className="enhanced-card detail-card">
-                  <div className="progress-card-content">
-                    <div className="progress-card-header">
-                      <h4 className="progress-card-title">
-                        <ion-icon name="bulb-outline"></ion-icon>
-                        Recomendaciones
-                      </h4>
-                    </div>
-                    <ul className="mt-2">
-                      <li className="progress-card-detail">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                        Evitar exceso de riego
-                      </li>
-                      <li className="progress-card-detail">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                        Revisar hojas por plagas
-                      </li>
-                      <li className="progress-card-detail">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                        Mantener control de temperatura
-                      </li>
-                    </ul>
+                    )}
                   </div>
                 </div>
               </div>
+            </header>
 
-              {/* Panel del gráfico */}
-              <div className="detail-graph-panel">
-                <div className="enhanced-card detail-card h-full">
-                  <div className="progress-card-content h-full d-flex flex-column">
-                    {/* Header del gráfico con dropdown */}
-                    <div className="progress-card-header d-flex justify-between align-center flex-wrap gap-3">
-                      <h2 className="enhanced-title">{getGraphTitle()}</h2>
+            <section className="enhanced-content d-flex mt-3 w-full h-full">
+              <div className="w-full h-full d-flex gap-4 detail-page-layout">
+                {/* Panel de información del cultivo */}
+                <div className="detail-info-panel">
+                  <div className="enhanced-card detail-card">
+                    <div className="progress-card-content">
+                      <div className="progress-card-header">
+                        <h3 className="progress-card-title">{nombre}</h3>
+                        <span className="progress-card-status active">
+                          Activo
+                        </span>
+                      </div>
 
-                      {/* Dropdown para seleccionar gráfico */}
-                      <div className="dropdown" ref={dropdownRef}>
-                        <Button
-                          className="enhanced-button enhanced-button--secondary"
-                          onClick={toggleDropdown}
-                        >
-                          <ion-icon name="options-outline"></ion-icon>
-                          Cambiar Gráfico
-                        </Button>
+                      <div className="progress-card-details">
+                        <div className="progress-card-detail">
+                          <ion-icon name="leaf"></ion-icon>
+                          <span>
+                            <strong>Tipo de Terreno:</strong> {tipoTerreno.nombre}
+                          </span>
+                        </div>
+                      </div>
 
-                        {dropdownOpen && (
-                          <div className="dropdown-menu">
-                            {graphOptions.map((option) => (
-                              <div
-                                key={option.id}
-                                className={`dropdown-item ${
-                                  selectedGraph === option.id ? "active" : ""
-                                }`}
-                                onClick={() => selectGraph(option.id)}
-                              >
-                                <ion-icon name={option.icon}></ion-icon>
-                                {option.label}
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                      <div className="progress-card-details">
+                        <div className="progress-card-detail">
+                          <ion-icon name="location"></ion-icon>
+                          <span>
+                            <strong>Localidad:</strong> {localidad}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="progress-card-details">
+                        <div className="progress-card-detail">
+                          <ion-icon name="calendar"></ion-icon>
+                          <span>
+                            <strong>Fecha de Siembra:</strong> {fechaSiembra}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="progress-card-details">
+                        <div className="progress-card-detail">
+                          <ion-icon name="trending-up"></ion-icon>
+                          <span>
+                            <strong>Estado:</strong> {estado}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="mt-3">
+                        <h4 className="enhanced-stat-label">Descripción</h4>
+                        <p className="text-justify">{descripcion}</p>
                       </div>
                     </div>
+                    <div className="d-flex justify-center mt-4">
+                      <div
+                        className="enhanced-button enhanced-button--secondary"
+                        onClick={handleToggleState}
+                      >
+                        <ion-icon name="options-outline"></ion-icon>
+                        {estado === "Activo"
+                          ? "Marcar como Completado"
+                          : "Marcar como Activo"}
+                      </div>
+                    </div>
+                  </div>
 
-                    {/* Contenido del gráfico */}
-                    <div className="flex-1 d-flex flex-column justify-center">
-                      {showGraph()}
+                  {/* Panel de recomendaciones */}
+                  <div className="enhanced-card detail-card">
+                    <div className="progress-card-content">
+                      <div className="progress-card-header">
+                        <h4 className="progress-card-title">
+                          <ion-icon name="bulb-outline"></ion-icon>
+                          Recomendaciones
+                        </h4>
+                      </div>
+                      <ul className="mt-2">
+                        <li className="progress-card-detail">
+                          <ion-icon name="checkmark-circle-outline"></ion-icon>
+                          Evitar exceso de riego
+                        </li>
+                        <li className="progress-card-detail">
+                          <ion-icon name="checkmark-circle-outline"></ion-icon>
+                          Revisar hojas por plagas
+                        </li>
+                        <li className="progress-card-detail">
+                          <ion-icon name="checkmark-circle-outline"></ion-icon>
+                          Mantener control de temperatura
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Panel del gráfico */}
+                <div className="detail-graph-panel">
+                  <div className="enhanced-card detail-card h-full">
+                    <div className="progress-card-content h-full d-flex flex-column">
+                      {/* Header del gráfico con dropdown */}
+                      <div className="progress-card-header d-flex justify-between align-center flex-wrap gap-3">
+                        <h2 className="enhanced-title">{getGraphTitle()}</h2>
+
+                        {/* Dropdown para seleccionar gráfico */}
+                        <div className="dropdown" ref={dropdownRef}>
+                          <Button
+                            className="enhanced-button enhanced-button--secondary"
+                            onClick={toggleDropdown}
+                          >
+                            <ion-icon name="options-outline"></ion-icon>
+                            Cambiar Gráfico
+                          </Button>
+
+                          {dropdownOpen && (
+                            <div className="dropdown-menu">
+                              {graphOptions.map((option) => (
+                                <div
+                                  key={option.id}
+                                  className={`dropdown-item ${
+                                    selectedGraph === option.id ? "active" : ""
+                                  }`}
+                                  onClick={() => selectGraph(option.id)}
+                                >
+                                  <ion-icon name={option.icon}></ion-icon>
+                                  {option.label}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Contenido del gráfico */}
+                      <div className="flex-1 d-flex flex-column justify-center">
+                        {showGraph()}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </article>
-      </div>
-      <CultivoModal show={showModal} toggle={toggleModal} initialData={item} />
-    </main>
+            </section>
+          </article>
+        </div>
+        <CultivoModal show={showModal} toggle={toggleModal} initialData={item} />
+      </main>
+    </div>
   );
 };
 

@@ -15,7 +15,6 @@ const useCropStore = create((set) => ({
   fetchCrops: async () => {
     try {
       const crops = await getCrops();
-      console.log('Fetched crops:', crops);
       set({ crops });
     } catch (error) {
       console.error('Error fetching crops:', error);
@@ -30,12 +29,9 @@ const useCropStore = create((set) => ({
 
   createCrop: async (cropData) => {
     try {
-      console.log('Creating crop with data:', cropData);
       const newCrop = await createCrop(cropData);
-      console.log('New crop created:', newCrop);
       // Actualizar la lista después de crear
       const crops = await getCrops();
-      console.log('Updated crops list:', crops);
       set({ crops });
       return newCrop;
     } catch (error) {

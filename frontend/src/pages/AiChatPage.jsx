@@ -3,6 +3,7 @@ import Sidebar from "../components/layouts/Sidebar";
 import { useParams, useNavigate } from "react-router-dom";
 import "../css/modules/ai-chat.css";
 
+
 const AiChatPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -13,16 +14,18 @@ const AiChatPage = () => {
   };
 
   return (
-    <main className="page-layout d-flex">
-      <Sidebar />
-      <div className="page-content-container d-flex">
-        <article className="d-flex flex-column w-full h-full">
-          <section className="details-container d-flex w-full h-full">
-            <AiChat cultivoId={id} onBack={handleBack} />
-          </section>
-        </article>
-      </div>
-    </main>
+    <div className="ai-chat-page-root">
+        <main className="page-layout d-flex">
+        <Sidebar />
+        <div className="page-content-container d-flex">
+          <article className="d-flex flex-column w-full h-full">
+            <section className="details-container d-flex w-full h-full">
+              <AiChat cultivoId={id} onBack={handleBack} />
+            </section>
+          </article>
+        </div>
+      </main>
+    </div>
   );
 };
 

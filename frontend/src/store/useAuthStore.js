@@ -40,34 +40,43 @@ const useAuthStore = create(
           const userData = response.data;
 
           if (userData.authenticated) {
-            set({
-              user: {
-                name: userData.name,
-                first_name: userData.first_name,
-                last_name: userData.last_name,
-                email: userData.email,
-                picture: userData.picture,
-              },
-              isAuthenticated: true,
-              loading: false,
-              hasCheckedSession: true,
-            });
+            set({ loading: true });
+            setTimeout(() => {
+              set({
+                user: {
+                  name: userData.name,
+                  first_name: userData.first_name,
+                  last_name: userData.last_name,
+                  email: userData.email,
+                  picture: userData.picture,
+                },
+                isAuthenticated: true,
+                loading: false,
+                hasCheckedSession: true,
+              });
+            }, 2000);
           } else {
+            set({ loading: true });
+            setTimeout(() => {
+              set({
+                user: null,
+                isAuthenticated: false,
+                loading: false,
+                hasCheckedSession: true,
+              });
+            }, 2000);
+          }
+        } catch (error) {
+          console.error("Error al verificar la sesión:", error);
+          set({ loading: true });
+          setTimeout(() => {
             set({
               user: null,
               isAuthenticated: false,
               loading: false,
               hasCheckedSession: true,
             });
-          }
-        } catch (error) {
-          console.error("Error al verificar la sesión:", error);
-          set({
-            user: null,
-            isAuthenticated: false,
-            loading: false,
-            hasCheckedSession: true,
-          });
+          }, 2000);
         }
       },
       updateUser: async (updatedFields) => {
