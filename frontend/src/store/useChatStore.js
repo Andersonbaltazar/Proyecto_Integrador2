@@ -45,13 +45,10 @@ export const useChatStore = create((set, get) => ({
     }));
 
     try {
-      const nuevaRecomendacion = await sendChatMessage(cultivoId, pregunta);
-      const chatsActuales = get().chats[cultivoId] || [];
+      await sendChatMessage(cultivoId, pregunta);
+      // Recarga el historial tras enviar para asegurar que se vean la pregunta y la respuesta
+      await get().loadChats(cultivoId);
       set((state) => ({
-        chats: {
-          ...state.chats,
-          [cultivoId]: [...chatsActuales, nuevaRecomendacion],
-        },
         loading: {
           ...state.loading,
           [cultivoId]: false,

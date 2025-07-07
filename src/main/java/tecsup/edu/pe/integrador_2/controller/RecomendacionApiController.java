@@ -63,7 +63,7 @@ public class RecomendacionApiController {
             contexto.append(", en un terreno de tipo: ").append(cultivo.getTipoTerreno().getNombre());
         if (cultivo.getLocalidad() != null)
             contexto.append(", ubicado geográficamente en: ").append(cultivo.getLocalidad());
-        contexto.append(", responde puntos claves en un limite de 500 caracteres");
+        contexto.append(", responde puntos claves en un limite de 500 caracteres. IMPORTANTE: Solo responde preguntas relacionadas con agricultura, cultivos, plantas, o temas agrícolas. Si la pregunta no está relacionada con estos temas, responde únicamente: 'Lo siento, solo puedo responder preguntas relacionadas con agricultura y cultivos.'");
 
         String preguntaIA = contexto.toString() + ". " + pregunta;
 

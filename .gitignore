@@ -34,3 +34,4 @@ build/
 
 ### Application Properties ###
 src/main/resources/application-local.properties
+application-prod.yml
