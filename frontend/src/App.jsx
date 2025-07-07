@@ -15,6 +15,7 @@ import CallbackPage from "./pages/CallbackPage";
 import SettingsPage from "./pages/SettingsPage";
 import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
+import TermsPage from "./pages/TermsPage";
 
 import ProtectedRoute from "./components/components/ProtectedRoute";
 
@@ -87,6 +88,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/terminos" element={<TermsPage />} />
     </Routes>
   );
 }
