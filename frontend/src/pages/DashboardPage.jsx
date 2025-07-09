@@ -68,8 +68,8 @@ const DashboardPage = () => {
       <main style={{flex: 1, padding: '2.5rem 2rem', maxWidth: 1200, margin: '0 auto'}}>
         <header style={{marginBottom: '2.5rem'}}>
           <div style={{display: 'flex', alignItems: 'center', gap: '2rem'}}>
-           <div>
-              <h1 style={{fontWeight: 800, fontSize: '2rem', color: '#2d5a27', margin: 0}}>¡Bienvenido a tu Dashboard!</h1>
+            <div>
+              <h1 className='enhanced-title'>¡Bienvenido a tu Dashboard!</h1>
               <p style={{margin: 0, color: '#444'}}>Visualiza métricas clave, productividad y ejemplos de código para tus cultivos.</p>
             </div>
           </div>
