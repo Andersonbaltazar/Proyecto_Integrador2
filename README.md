@@ -281,7 +281,7 @@ Para soporte técnico o consultas:
 
 ## 🔄 Versiones
 
-- **v1.0.0** - Versión inicial con funcionalidades básicas
+- **v1.0.0** - Versión estable
 
 ---
 
